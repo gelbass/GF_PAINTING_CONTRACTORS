@@ -1,0 +1,60 @@
+@use 'sass:map';
+@use "_variables" as *;
+
+@mixin containers($width: '100%',$height: '100vh',$display:null,$gap:'0px',$padding:'0px',$direction: 'column',$justify: 'center',$align: 'center') {
+    width: $width;
+    height: $height;
+    display: $display;
+    gap: $gap;
+    padding: $padding;
+
+    @if $display != null {
+      display: $display;
+    }
+
+    @if $display == "flex"{
+      flex-direction: $direction;
+      justify-content: $justify;
+      align-items: $align;
+    }
+}
+
+@mixin container_img($url) {
+  background-image: url($url);
+  background-size: cover;
+  background-position: center;
+}
+@mixin text($font,$size,$style,$weight,$height,$color){
+    font-family: $font;
+    font-size: $size;
+    font-style: $style;
+    font-weight: $weight;
+    line-height: $height;
+    margin: 0px;
+    color: $color !important;
+}
+@mixin respond-between($min, $max) {
+    $min-width: map.get($breakpoints, $min);
+    $max-width: map.get($breakpoints, $max);
+    
+    @if $min-width and $max-width {
+      @media (min-width: #{$min-width}) and (max-width: #{$max-width}) {
+        @content;
+      }
+    } @else {
+      @warn "Uno o ambos de los puntos de quiebre '#{$min}' o '#{$max}' no existen en el mapa.";
+    }
+  }
+
+// Hasta el punto de quiebre indicado (incluido)
+@mixin respond-below($max) {
+    $max-width: map.get($breakpoints, $max);
+
+    @if $max-width {
+      @media (max-width: #{$max-width}) {
+        @content;
+      }
+    } @else {
+      @warn "El punto de quiebre '#{$max}' no existe en el mapa.";
+    }
+}

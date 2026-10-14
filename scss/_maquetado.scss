@@ -1,0 +1,140 @@
+@use"_variables" as *;
+@use"_mixing" as *;
+* {
+    margin: 0;
+    padding: 0;
+    font-family:$fuentePrincipal;
+}
+
+:root {
+    --bs-body-font-family: #{$fuentePrincipal};
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px;
+}
+
+body {
+    background: $colorCrema;
+    color: $colorTextN;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ===== TEXTOS ===== */
+.eyebrow {
+    @include text($fuentePrincipal, 15px, normal, 700, normal, $colorSegundario);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    &--orange { color: $colorSegundario !important; }
+    &--green { color: $colorPrincipal !important; }
+}
+
+.title {
+    @include text($fuentePrincipal, 48px, normal, 800, 49px, $colorTextN);
+
+    &--light { color: $colorTextB !important; }
+}
+
+.lead-text {
+    @include text($fuentePrincipal, 23px, normal, 400, 1.5, $colorTexto);
+
+    &--light { color: $colorTextoClaro !important; }
+    &--xl { font-size: 28px; }
+}
+
+.text-green { color: $colorPrincipal; }
+.text-orange { color: $colorSegundario; }
+
+/* ===== BOTONES ===== */
+.btn-gf {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border: 0;
+    border-radius: $radioBoton;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    color: $colorTextB;
+    white-space: nowrap;
+    transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+
+    &:hover, &:focus-visible {
+        color: $colorTextB;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+    }
+
+    &--green {
+        background: $colorPrincipal;
+        &:hover, &:focus-visible { background: #6a9243; }
+    }
+
+    &--orange {
+        background: $colorSegundario;
+        &:hover, &:focus-visible { background: #c9612a; }
+    }
+
+    &--lg { font-size: 20px; }
+
+    &--block {
+        width: 100%;
+        padding: 20px 15px;
+    }
+
+    &:disabled {
+        opacity: .7;
+        transform: none;
+    }
+}
+
+.round-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border: 0;
+    border-radius: 50%;
+
+    &--green { background: $colorPrincipal; }
+    &--orange { background: $colorSegundario; }
+}
+
+/* ===== SECCIONES ===== */
+.section {
+    position: relative;
+    min-height: 832px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    &--auto { min-height: 0; }
+    &--cream { background: $colorCrema; }
+    &--dark { background: $colorTextN; }
+
+    &__inner {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 1253px;
+        margin: 0 auto;
+        padding: 77px 40px;
+    }
+
+    &__heading {
+        display: flex;
+        flex-direction: column;
+        gap: 17px;
+
+        &--center { text-align: center; }
+    }
+}
