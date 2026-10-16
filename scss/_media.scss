@@ -1,0 +1,156 @@
+@use "_variables" as *;
+@use "_mixing" as *;
+
+/* ===== LAPTOPS PEQUEÑAS ===== */
+@include respond-below("laptop-small") {
+    .title, .hero__title { font-size: 42px; line-height: 1.1; }
+    .hero__subtitle { font-size: 29px; }
+    .lead-text { font-size: 20px; }
+    .lead-text--xl { font-size: 24px; }
+    .solutions { gap: 30px; }
+    .services, .area { gap: 40px; }
+    .contact { gap: 50px; }
+    .contact__intro { flex-basis: 360px; }
+    .why__text { font-size: 20px; }
+    .contact__footer .btn-gf { flex-basis: 300px; }
+}
+
+/* ===== TABLETS (menu colapsado) ===== */
+@include respond-below("tablet-large") {
+    .container__header {
+        top: 12px;
+        width: calc(100% - 24px);
+    }
+
+    .container__menu {
+        flex-wrap: wrap;
+        padding: 8px 12px;
+    }
+
+    .imgMenu { width: 150px; }
+
+    .container__menu--bar {
+        flex-basis: 100%;
+    }
+
+    .container__menu--items {
+        margin: 10px 0;
+        gap: 0;
+    }
+
+    .container__menu--btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .section {
+        min-height: 0;
+
+        &__inner { padding: 64px 24px; }
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        min-height: 0;
+
+        &__content { padding: 120px 24px 48px; }
+        &__image { height: 460px; }
+        &__seal { display: none; }
+    }
+
+    .solutions {
+        grid-template-columns: 1fr 1fr;
+        margin-top: 48px;
+    }
+
+    .photo-card { height: 420px; }
+
+    .services, .area, .contact, .why {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .services__intro,
+    .accordion-gf,
+    .area__content,
+    .area__map,
+    .contact__intro,
+    .why__text,
+    .why__grid {
+        flex: 0 0 auto;
+    }
+
+    .area__map {
+        max-width: 566px;
+        margin: 0 auto;
+    }
+
+    .area__content { gap: 32px; }
+
+    #why-us .section__inner,
+    #service-area .section__inner {
+        padding: 64px 24px;
+    }
+
+    .why { margin-top: 40px; }
+
+    .carousel-gf { margin-top: 48px; }
+
+    .contact__intro {
+        flex-direction: row;
+        align-items: center;
+        gap: 32px;
+    }
+
+    .contact__icon {
+        width: 180px;
+        height: 180px;
+        margin: -24px -56px -60px -24px;
+    }
+}
+
+/* ===== TELEFONOS ===== */
+@include respond-below("tablet-small") {
+    .title, .hero__title { font-size: 32px; }
+    .hero__subtitle { font-size: 24px; }
+    .lead-text, .lead-text--xl, .why__text { font-size: 18px; }
+
+    .hero__image { height: 320px; }
+
+    .solutions { grid-template-columns: 1fr; }
+    .photo-card { height: 380px; }
+
+    .accordion-gf__header { font-size: 19px; }
+    .accordion-gf__panel img { height: 200px; }
+
+    .carousel-gf__track { grid-auto-columns: 100%; }
+    .carousel-gf__slide { height: 260px; }
+    .carousel-gf__footer .btn-gf { font-size: 16px; }
+
+    .why__grid { grid-template-columns: 1fr; gap: 16px; }
+    .feature__title { font-size: 20px; }
+
+    .contact__intro {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-row-gf,
+    .form-row-gf--email {
+        grid-template-columns: 1fr;
+    }
+
+    .field label { font-size: 17px; }
+    .field input, .field select, .field textarea { font-size: 16px; }
+
+    .contact__footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+        margin-top: 16px;
+
+        .btn-gf { flex-basis: auto; }
+    }
+
+    .contact__note { font-size: 16px; }
+}

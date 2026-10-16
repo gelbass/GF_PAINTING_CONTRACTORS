@@ -1,0 +1,37 @@
+$fuentePrincipal: "Plus Jakarta Sans", sans-serif;
+
+$colorMenu: #ffffff;
+$colorMenuInvertido: #000000;
+
+$colorPrincipal: #7ca651;   // verde
+$colorSegundario: #e17438;  // naranja
+$colorButton: $colorPrincipal;
+$colorTextB: #fff;
+$colorTextN: #000;
+
+$colorCrema: #f5f3ed;
+$colorTexto: #484848;
+$colorTextoClaro: #cfcfcf;
+$colorInput: #cfdbbd;
+$colorCardOscura: rgba(0, 0, 0, 0.7);
+
+$radioGrande: 20px;
+$radioBoton: 15px;
+$anchoContenido: 1280px;
+
+$breakpoints: (
+  "none": 0px, 
+  "phone-small": 320px,       // iPhone SE, teléfonos más pequeños
+  "phone-medium": 375px,      // iPhone X, teléfonos promedio
+  "phone-large": 414px,       // iPhone 11 Pro Max, teléfonos grandes
+  "tablet-small": 600px,      // tabletas pequeñas, dispositivos plegables
+  "tablet-medium": 768px,     // iPad estándar, tabletas en modo vertical
+  "tablet-large": 991px,      // iPad Pro, tabletas grandes en modo horizontal
+  "laptop-small": 1200px,     // laptops pequeñas
+  "laptop-medium": 1366px,    // resolución común de laptops
+  "desktop-small": 1440px,    // monitores de escritorio pequeños
+  "desktop-medium": 1600px,   // monitores de escritorio medianos
+  "desktop-large": 1920px,    // resolución Full HD, monitores grandes
+  "desktop-xl": 2560px,       // monitores 2K
+  "desktop-xxl": 3840px       // monitores 4K
+);
