@@ -19,6 +19,21 @@ navbarNav.querySelectorAll("a").forEach((link) => {
   });
 });
 
+// ===== MENU: marcar la seccion visible (estado "selected" de Figma) =====
+const menuLinks = document.querySelectorAll(".container__menu--item");
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      menuLinks.forEach((link) => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
+      });
+    });
+  },
+  { rootMargin: "-45% 0px -50% 0px" }
+);
+document.querySelectorAll("main section[id]").forEach((section) => sectionObserver.observe(section));
+
 // ===== ACORDEON DE SERVICIOS =====
 const accordionItems = document.querySelectorAll(".accordion-gf__item");
 accordionItems.forEach((item) => {

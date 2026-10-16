@@ -57,7 +57,12 @@ img {
     transform: scale(1.05);
 }
 
-.accordion-gf__panel img,
+.accordion-gf__panel img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
 .carousel-gf__slide img {
     display: block;
     width: 100%;

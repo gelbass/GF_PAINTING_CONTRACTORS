@@ -28,27 +28,58 @@
 }
 
 .container__menu--items {
+    flex-direction: row;
     gap: 10px;
     margin: 0 auto;
 }
 
+// Estados del componente Menu de Figma: default, hover y selected
 .container__menu--item {
     padding: 10px !important;
+    border: 1px solid transparent;
+    border-radius: 10px;
     font-size: 15px;
     font-weight: 700;
+    line-height: 1;
     color: $colorTextN !important;
-    transition: color .2s ease;
+    transition: color .2s ease, border-color .2s ease, background-color .2s ease;
 
-    &:hover, &:focus-visible, &.active {
-        color: $colorPrincipal !important;
+    &:hover, &:focus-visible {
+        border-color: $colorSegundario;
+        font-weight: 400;
+        color: $colorSegundario !important;
+    }
+
+    &.active {
+        border-color: $colorPrincipal;
+        background: $colorPrincipal;
+        font-weight: 700;
+        color: $colorTextB !important;
     }
 }
 
 .container__menu--toggler {
+    display: none;
     border: 0;
-    padding: 10px;
+    padding: 0;
+
+    img { display: block; }
 
     &:focus { box-shadow: none; }
+}
+
+// El menu se muestra completo por encima de 860px (diseño de 991px y escritorio)
+@media (min-width: 861px) {
+    .container__menu {
+        flex-wrap: nowrap;
+    }
+
+    #navbarNav {
+        display: flex !important;
+        flex-basis: auto;
+        flex-grow: 1;
+        align-items: center;
+    }
 }
 
 /* ===== HERO ===== */
@@ -173,7 +204,7 @@
     &__item {
         position: relative;
         margin-bottom: -22px;
-        padding: 20px 20px 42px;
+        padding: 20px 20px 26.5px;
         border-radius: 22.25px;
 
         &:last-child {
@@ -237,7 +268,7 @@
         }
 
         img {
-            height: 270px;
+            height: 230px;
             margin-top: 22px;
             border-radius: $radioGrande;
         }
@@ -287,7 +318,7 @@
 
         .round-icon {
             transition: transform .2s ease, background-color .2s ease;
-            &:hover { background: #c9612a; }
+            &:hover, &:focus-visible { background: $colorPrincipal; }
         }
     }
 
@@ -357,6 +388,15 @@
 }
 
 /* ===== SERVICE AREA ===== */
+#services .section__inner {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+#service-area {
+    min-height: 675px;
+}
+
 #service-area .section__inner {
     padding: 69px 56px;
     max-width: 1280px;

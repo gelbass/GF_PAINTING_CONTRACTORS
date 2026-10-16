@@ -64,22 +64,21 @@ a {
     line-height: 1;
     color: $colorTextB;
     white-space: nowrap;
-    transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+    transition: background-color .25s ease;
 
     &:hover, &:focus-visible {
         color: $colorTextB;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
     }
 
+    // Hover segun Figma: el naranja pasa a verde y el verde a naranja
     &--green {
         background: $colorPrincipal;
-        &:hover, &:focus-visible { background: #6a9243; }
+        &:hover, &:focus-visible { background: $colorSegundario; }
     }
 
     &--orange {
         background: $colorSegundario;
-        &:hover, &:focus-visible { background: #c9612a; }
+        &:hover, &:focus-visible { background: $colorPrincipal; }
     }
 
     &--lg { font-size: 20px; }
@@ -91,7 +90,6 @@ a {
 
     &:disabled {
         opacity: .7;
-        transform: none;
     }
 }
 
