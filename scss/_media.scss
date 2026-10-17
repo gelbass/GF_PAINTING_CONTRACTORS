@@ -714,7 +714,7 @@
     /* Our services */
     #services .section__inner { padding: 60px 40px; }
 
-    .accordion-gf__panel img { height: clamp(160px, 27vh, 240px); }
+    .accordion-gf__panel img { height: clamp(110px, 32vh - 60px, 240px); }
 
     /* Our work: las dos fotos se apilan como en Figma */
     #our-work .section__inner { padding: 60px 40px 46.7px; }
