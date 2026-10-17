@@ -176,8 +176,8 @@
 
 /* ===== OUR SERVICES (tarjetas apiladas al hacer scroll) ===== */
 // Sin JS las tarjetas se ven como una lista normal. js/script.js agrega
-// .is-stacking: la seccion queda fija (GSAP ScrollTrigger) y cada tarjeta
-// sube sobre la anterior, que se achica y oscurece un poco.
+// .is-stacking en escritorio (seccion fija con GSAP ScrollTrigger) o
+// .is-sticky-stack en tablet y movil (tarjetas sticky).
 .services {
     display: flex;
     align-items: center;
@@ -278,6 +278,20 @@
         transform-origin: 50% 0;
         will-change: transform;
     }
+}
+
+// Tablet y movil (.is-sticky-stack): cada tarjeta se detiene un poco mas abajo
+// que la anterior. overflow: clip recorta igual que hidden pero no anula sticky.
+#services {
+    overflow: clip;
+}
+
+.accordion-gf.is-sticky-stack .accordion-gf__item {
+    position: sticky;
+    top: calc(var(--stack-top) + var(--i) * var(--stack-step));
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, .15);
+    transform-origin: 50% 0;
+    will-change: transform;
 }
 
 /* ===== OUR WORK (carrusel) ===== */

@@ -472,6 +472,18 @@ a {
   will-change: transform;
 }
 
+#services {
+  overflow: clip;
+}
+
+.accordion-gf.is-sticky-stack .accordion-gf__item {
+  position: sticky;
+  top: calc(var(--stack-top) + var(--i) * var(--stack-step));
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+
 /* ===== OUR WORK (carrusel) ===== */
 .carousel-gf {
   margin-top: 73px;
