@@ -38,8 +38,8 @@ document.querySelectorAll("main section[id]").forEach((section) => sectionObserv
 // La seccion queda fija mientras cada tarjeta sube sobre la anterior; las de
 // atras se achican y oscurecen. scrub suaviza el movimiento de la rueda del raton.
 const stack = document.getElementById("servicesAccordion");
-const stackCards = gsap.utils.toArray(".accordion-gf__item");
-const STACK_STEP = 14; // franja visible de cada tarjeta apilada
+const stackCards = [...document.querySelectorAll(".accordion-gf__item")];
+let STACK_STEP = 14; // franja visible de cada tarjeta apilada
 
 const sizeStack = () => {
   stackCards.forEach((card) => (card.style.minHeight = ""));
@@ -48,7 +48,8 @@ const sizeStack = () => {
   stack.style.setProperty("--stack-height", `${tallest + (stackCards.length - 1) * STACK_STEP}px`);
 };
 
-const buildStack = (pinTarget, start) => {
+const buildStack = (pinTarget, start, step) => {
+  STACK_STEP = step;
   stack.classList.add("is-stacking");
   sizeStack();
   ScrollTrigger.addEventListener("refreshInit", sizeStack);
@@ -87,13 +88,22 @@ if (stack && window.gsap && window.ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);
   const media = gsap.matchMedia();
   // Se fija toda la seccion, asi el texto de Our Services no se mueve.
-  // Escritorio: centrada en pantalla (un poco mas abajo por el menu). Tablet y movil: alineada abajo para que
-  // las tarjetas, que van debajo del texto, queden a la vista.
+  // Escritorio: centrada en pantalla (un poco mas abajo por el menu). Tablet y movil:
+  // alineada abajo para que las tarjetas, que van debajo del texto, queden a la vista.
   media.add("(min-width: 861px) and (prefers-reduced-motion: no-preference)", () =>
-    buildStack("#services", "center center+=40") // +40: deja espacio para el menu fijo
+    buildStack("#services", "center center+=40", 14) // +40: deja espacio para el menu fijo
   );
+  // Si la seccion no entra en pantalla (telefonos bajos) se prioriza que las
+  // tarjetas queden enteras justo debajo del menu, aunque el texto quede arriba.
+  const mobileStart = () => {
+    const section = document.getElementById("services");
+    const menuBottom = document.querySelector(".container__header").getBoundingClientRect().bottom;
+    const stackOffset = stack.getBoundingClientRect().top - section.getBoundingClientRect().top;
+    const bottomAligned = section.offsetHeight - window.innerHeight;
+    return `top+=${Math.min(bottomAligned, stackOffset - menuBottom - 12)} top`;
+  };
   media.add("(max-width: 860px) and (prefers-reduced-motion: no-preference)", () =>
-    buildStack("#services", "bottom bottom")
+    buildStack("#services", mobileStart, 10)
   );
   // El pin agrega espacio a la pagina: AOS debe recalcular sus posiciones
   ScrollTrigger.addEventListener("refresh", () => AOS.refresh());
