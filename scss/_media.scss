@@ -134,11 +134,11 @@
         flex-basis: 492px;
 
         &__item {
-            margin-bottom: -17.23px;
-            padding: 15.48px 15.48px 22.93px;
+            margin-bottom: 32px;
+            padding: 15.48px;
             border-radius: 17.23px;
 
-            &:last-child { padding-bottom: 15.48px; }
+            &:last-child { margin-bottom: 0; }
         }
 
         &__panel img {
@@ -422,6 +422,7 @@
         gap: 47.56px;
 
         &__intro {
+            position: static;
             flex: 0 0 auto;
             gap: 20px;
         }
@@ -431,11 +432,11 @@
         flex: 0 0 auto;
 
         &__item {
-            margin-bottom: -14.5px;
-            padding: 13.03px 13.03px 18.91px;
+            margin-bottom: 28px;
+            padding: 13.03px;
             border-radius: 14.5px;
 
-            &:last-child { padding-bottom: 13.03px; }
+            &:last-child { margin-bottom: 0; }
         }
 
         &__header { font-size: 28px; }

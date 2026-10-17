@@ -180,20 +180,35 @@
     }
 }
 
-/* ===== OUR SERVICES (acordeon) ===== */
+/* ===== OUR SERVICES (tarjetas apiladas al hacer scroll) ===== */
+// Cada tarjeta es sticky y se detiene un poco mas abajo que la anterior,
+// asi la siguiente la cubre y deja asomar el borde superior de las de atras.
+// js/script.js reduce la escala de las tarjetas que van quedando cubiertas.
+#services {
+    overflow: visible; // overflow: hidden en .section anula position: sticky
+}
+
 .services {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 73px;
     max-width: 1280px;
 
     &__intro {
+        position: sticky;
+        top: var(--stack-top);
         display: flex;
         flex: 0 1 504px;
         flex-direction: column;
         gap: 17px;
     }
+}
+
+.services,
+.accordion-gf {
+    --stack-top: 140px;  // debajo del menu fijo
+    --stack-step: 14px;  // franja visible de cada tarjeta apilada
 }
 
 .accordion-gf {
@@ -202,15 +217,16 @@
     flex-direction: column;
 
     &__item {
-        position: relative;
-        margin-bottom: -22px;
-        padding: 20px 20px 26.5px;
+        position: sticky;
+        top: calc(var(--stack-top) + var(--i, 0) * var(--stack-step));
+        margin-bottom: 40px;
+        padding: 20px;
         border-radius: 22.25px;
+        box-shadow: 0 -8px 24px rgba(0, 0, 0, .12);
+        transform-origin: 50% 0;
+        will-change: transform;
 
-        &:last-child {
-            margin-bottom: 0;
-            padding-bottom: 20px;
-        }
+        &:last-child { margin-bottom: 0; }
 
         &--green {
             background: $colorPrincipal;
@@ -236,31 +252,14 @@
     }
 
     &__header {
-        display: block;
-        width: 100%;
-        padding: 0;
-        border: 0;
-        background: none;
+        margin: 0 0 12px;
         color: inherit;
         font-size: 23px;
         font-weight: 700;
         line-height: 1.5;
-        text-align: left;
-        cursor: pointer;
-
-        &:focus-visible {
-            outline: 2px solid currentColor;
-            outline-offset: 4px;
-            border-radius: 4px;
-        }
     }
 
     &__panel {
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: max-height .4s ease, opacity .3s ease;
-
         p {
             margin: 0;
             font-size: 16px;
@@ -272,11 +271,6 @@
             margin-top: 22px;
             border-radius: $radioGrande;
         }
-    }
-
-    &__item.is-open &__panel {
-        max-height: 420px;
-        opacity: 1;
     }
 }
 

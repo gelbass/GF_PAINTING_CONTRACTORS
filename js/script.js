@@ -34,18 +34,52 @@ const sectionObserver = new IntersectionObserver(
 );
 document.querySelectorAll("main section[id]").forEach((section) => sectionObserver.observe(section));
 
-// ===== ACORDEON DE SERVICIOS =====
-const accordionItems = document.querySelectorAll(".accordion-gf__item");
-accordionItems.forEach((item) => {
-  const header = item.querySelector(".accordion-gf__header");
-  const open = () => {
-    accordionItems.forEach((other) => {
-      other.classList.toggle("is-open", other === item);
-      other.querySelector(".accordion-gf__header").setAttribute("aria-expanded", other === item);
-    });
-  };
-  header.addEventListener("click", open);
-});
+// ===== OUR SERVICES: TARJETAS APILADAS AL HACER SCROLL =====
+// El apilado lo hace CSS (position: sticky). Aqui solo se iguala la altura de
+// las tarjetas y se reduce la escala de las que quedan cubiertas por las siguientes.
+const stackCards = [...document.querySelectorAll(".accordion-gf__item")];
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+const equalizeStackCards = () => {
+  stackCards.forEach((card) => (card.style.minHeight = ""));
+  const tallest = Math.max(...stackCards.map((card) => card.offsetHeight));
+  stackCards.forEach((card) => (card.style.minHeight = `${tallest}px`));
+};
+
+const updateStackCards = () => {
+  // Cuanto ha avanzado cada tarjeta sobre la anterior: 0 = abajo, 1 = ya apilada
+  const progress = stackCards.map((card) => {
+    const stickyTop = parseFloat(getComputedStyle(card).top);
+    const distance = card.getBoundingClientRect().top - stickyTop;
+    return Math.min(Math.max(1 - distance / card.offsetHeight, 0), 1);
+  });
+  stackCards.forEach((card, index) => {
+    const depth = reduceMotion.matches ? 0 : progress.slice(index + 1).reduce((sum, p) => sum + p, 0);
+    card.style.transform = depth ? `scale(${1 - depth * 0.04})` : "";
+  });
+};
+
+let stackTicking = false;
+const requestStackUpdate = () => {
+  if (stackTicking) return;
+  stackTicking = true;
+  requestAnimationFrame(() => {
+    updateStackCards();
+    stackTicking = false;
+  });
+};
+
+if (stackCards.length) {
+  equalizeStackCards();
+  updateStackCards();
+  window.addEventListener("scroll", requestStackUpdate, { passive: true });
+  window.addEventListener("resize", () => {
+    equalizeStackCards();
+    requestStackUpdate();
+  });
+  // Las fotos son lazy: al cargar pueden cambiar la altura de las tarjetas
+  window.addEventListener("load", equalizeStackCards);
+}
 
 // ===== CARRUSEL OUR WORK =====
 const track = document.getElementById("workTrack");
