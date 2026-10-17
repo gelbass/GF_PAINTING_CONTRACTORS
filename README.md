@@ -1,4 +1,4 @@
-# GP_PAINTING_CONTRACTORS
+# GF_PAINTING_CONTRACTORS
 
 Landing page de GF Painting Contractors, construida a partir de la plantilla de landing de Soltecs y del diseño de Figma.
 
