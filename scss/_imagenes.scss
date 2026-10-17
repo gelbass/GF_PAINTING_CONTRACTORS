@@ -6,6 +6,13 @@ img {
     height: auto;
 }
 
+// <picture> solo elige el formato (AVIF/WebP/JPG): no debe alterar el maquetado de la imagen
+picture {
+    display: contents;
+
+    source { display: none; }
+}
+
 .imgMenu {
     display: block;
     width: 192px;
