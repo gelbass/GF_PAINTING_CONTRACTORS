@@ -1142,6 +1142,10 @@ img {
   .eyebrow {
     line-height: 12px;
   }
+  .title, .hero__title {
+    font-size: 48px;
+    line-height: 50px;
+  }
   .lead-text {
     font-size: 23px;
     line-height: 35px;
@@ -1250,7 +1254,17 @@ img {
   .photo-card {
     height: 536.62px;
   }
+  .photo-card__title {
+    font-size: 28px;
+    line-height: 42px;
+  }
+  .photo-card__body p {
+    font-size: 19px;
+    line-height: 29px;
+  }
   #solutions .lead-text--xl {
+    margin-inline: -67px;
+    font-size: 23px;
     line-height: 27.4px;
   }
   /* Our services */
@@ -1500,7 +1514,7 @@ img {
     height: 536.62px;
   }
   #solutions .lead-text--xl {
-    font-size: 23px;
+    margin-inline: 0;
     line-height: 35px;
   }
   #solutions .title {

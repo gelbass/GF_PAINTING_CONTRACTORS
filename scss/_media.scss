@@ -310,8 +310,14 @@
    ========================================================= */
 @include respond-below("tablet-wide") {
     // Figma recorta las cajas de texto a la altura de mayusculas:
-    // 12px para el eyebrow, 35px por linea en 23px y 29px por linea en 19px.
+    // 12px para el eyebrow, 35px por linea en 23px y 29px por linea en 19px
+    // (el 150% de Figma da 34.5px y 28.5px; se redondea como sus cajas).
     .eyebrow { line-height: 12px; }
+
+    .title, .hero__title {
+        font-size: 48px;
+        line-height: 50px;
+    }
 
     .lead-text {
         font-size: 23px;
@@ -426,9 +432,27 @@
         margin-top: 47.56px;
     }
 
-    .photo-card { height: 536.62px; }
+    .photo-card {
+        height: 536.62px;
 
-    #solutions .lead-text--xl { line-height: 27.4px; }
+        &__title {
+            font-size: 28px;
+            line-height: 42px;
+        }
+
+        &__body p {
+            font-size: 19px;
+            line-height: 29px;
+        }
+    }
+
+    // En Figma esta frase es una sola linea en una caja de 764 x 27.4,
+    // mas ancha que el contenido: se deja sobresalir para que no parta en dos.
+    #solutions .lead-text--xl {
+        margin-inline: -67px;
+        font-size: 23px;
+        line-height: 27.4px;
+    }
 
     /* Our services */
     #services .section__inner { padding: 60px; }
@@ -678,7 +702,7 @@
     .solutions .photo-card { height: 536.62px; }
 
     #solutions .lead-text--xl {
-        font-size: 23px;
+        margin-inline: 0;
         line-height: 35px;
     }
 
