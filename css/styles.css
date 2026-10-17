@@ -372,30 +372,18 @@ a {
 }
 
 /* ===== OUR SERVICES (tarjetas apiladas al hacer scroll) ===== */
-#services {
-  overflow: visible;
-}
-
 .services {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 73px;
   max-width: 1280px;
 }
 .services__intro {
-  position: sticky;
-  top: var(--stack-top);
   display: flex;
   flex: 0 1 504px;
   flex-direction: column;
   gap: 17px;
-}
-
-.services,
-.accordion-gf {
-  --stack-top: 140px;
-  --stack-step: 14px;
 }
 
 .accordion-gf {
@@ -404,17 +392,22 @@ a {
   flex-direction: column;
 }
 .accordion-gf__item {
-  position: sticky;
-  top: calc(var(--stack-top) + var(--i, 0) * var(--stack-step));
+  position: relative;
   margin-bottom: 40px;
   padding: 20px;
   border-radius: 22.25px;
-  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12);
-  transform-origin: 50% 0;
-  will-change: transform;
 }
 .accordion-gf__item:last-child {
   margin-bottom: 0;
+}
+.accordion-gf__item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #000;
+  opacity: var(--dim, 0);
+  pointer-events: none;
 }
 .accordion-gf__item--green {
   background: #7ca651;
@@ -454,6 +447,22 @@ a {
   height: 230px;
   margin-top: 22px;
   border-radius: 20px;
+}
+
+.accordion-gf.is-stacking {
+  position: relative;
+  display: block;
+  height: var(--stack-height);
+}
+.accordion-gf.is-stacking .accordion-gf__item {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: 0;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+  transform-origin: 50% 0;
+  will-change: transform;
 }
 
 /* ===== OUR WORK (carrusel) ===== */
@@ -1235,7 +1244,6 @@ img {
     gap: 47.56px;
   }
   .services__intro {
-    position: static;
     flex: 0 0 auto;
     gap: 20px;
   }

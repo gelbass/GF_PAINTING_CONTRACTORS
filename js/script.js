@@ -35,50 +35,68 @@ const sectionObserver = new IntersectionObserver(
 document.querySelectorAll("main section[id]").forEach((section) => sectionObserver.observe(section));
 
 // ===== OUR SERVICES: TARJETAS APILADAS AL HACER SCROLL =====
-// El apilado lo hace CSS (position: sticky). Aqui solo se iguala la altura de
-// las tarjetas y se reduce la escala de las que quedan cubiertas por las siguientes.
-const stackCards = [...document.querySelectorAll(".accordion-gf__item")];
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+// La seccion queda fija mientras cada tarjeta sube sobre la anterior; las de
+// atras se achican y oscurecen. scrub suaviza el movimiento de la rueda del raton.
+const stack = document.getElementById("servicesAccordion");
+const stackCards = gsap.utils.toArray(".accordion-gf__item");
+const STACK_STEP = 14; // franja visible de cada tarjeta apilada
 
-const equalizeStackCards = () => {
+const sizeStack = () => {
   stackCards.forEach((card) => (card.style.minHeight = ""));
   const tallest = Math.max(...stackCards.map((card) => card.offsetHeight));
   stackCards.forEach((card) => (card.style.minHeight = `${tallest}px`));
+  stack.style.setProperty("--stack-height", `${tallest + (stackCards.length - 1) * STACK_STEP}px`);
 };
 
-const updateStackCards = () => {
-  // Cuanto ha avanzado cada tarjeta sobre la anterior: 0 = abajo, 1 = ya apilada
-  const progress = stackCards.map((card) => {
-    const stickyTop = parseFloat(getComputedStyle(card).top);
-    const distance = card.getBoundingClientRect().top - stickyTop;
-    return Math.min(Math.max(1 - distance / card.offsetHeight, 0), 1);
+const buildStack = (pinTarget, start) => {
+  stack.classList.add("is-stacking");
+  sizeStack();
+  ScrollTrigger.addEventListener("refreshInit", sizeStack);
+
+  const timeline = gsap.timeline({
+    defaults: { ease: "power2.out" },
+    scrollTrigger: {
+      trigger: pinTarget,
+      pin: true,
+      start,
+      end: () => `+=${(stackCards.length - 1) * window.innerHeight * 0.6}`,
+      scrub: 1,
+      invalidateOnRefresh: true,
+    },
   });
+
   stackCards.forEach((card, index) => {
-    const depth = reduceMotion.matches ? 0 : progress.slice(index + 1).reduce((sum, p) => sum + p, 0);
-    card.style.transform = depth ? `scale(${1 - depth * 0.04})` : "";
+    if (index === 0) return;
+    timeline.fromTo(card, { y: () => window.innerHeight }, { y: index * STACK_STEP }, index - 1);
+    stackCards.slice(0, index).forEach((behind, behindIndex) => {
+      const depth = index - behindIndex;
+      timeline.to(behind, { scale: 1 - depth * 0.05, "--dim": Math.min(depth * 0.12, 0.5) }, index - 1);
+    });
   });
+  timeline.to({}, { duration: 0.4 }); // pausa breve con todas apiladas
+
+  return () => {
+    ScrollTrigger.removeEventListener("refreshInit", sizeStack);
+    stack.classList.remove("is-stacking");
+    stack.style.removeProperty("--stack-height");
+    stackCards.forEach((card) => (card.style.minHeight = ""));
+  };
 };
 
-let stackTicking = false;
-const requestStackUpdate = () => {
-  if (stackTicking) return;
-  stackTicking = true;
-  requestAnimationFrame(() => {
-    updateStackCards();
-    stackTicking = false;
-  });
-};
-
-if (stackCards.length) {
-  equalizeStackCards();
-  updateStackCards();
-  window.addEventListener("scroll", requestStackUpdate, { passive: true });
-  window.addEventListener("resize", () => {
-    equalizeStackCards();
-    requestStackUpdate();
-  });
-  // Las fotos son lazy: al cargar pueden cambiar la altura de las tarjetas
-  window.addEventListener("load", equalizeStackCards);
+if (stack && window.gsap && window.ScrollTrigger) {
+  gsap.registerPlugin(ScrollTrigger);
+  const media = gsap.matchMedia();
+  // Se fija toda la seccion, asi el texto de Our Services no se mueve.
+  // Escritorio: centrada en pantalla (un poco mas abajo por el menu). Tablet y movil: alineada abajo para que
+  // las tarjetas, que van debajo del texto, queden a la vista.
+  media.add("(min-width: 861px) and (prefers-reduced-motion: no-preference)", () =>
+    buildStack("#services", "center center+=40") // +40: deja espacio para el menu fijo
+  );
+  media.add("(max-width: 860px) and (prefers-reduced-motion: no-preference)", () =>
+    buildStack("#services", "bottom bottom")
+  );
+  // El pin agrega espacio a la pagina: AOS debe recalcular sus posiciones
+  ScrollTrigger.addEventListener("refresh", () => AOS.refresh());
 }
 
 // ===== CARRUSEL OUR WORK =====

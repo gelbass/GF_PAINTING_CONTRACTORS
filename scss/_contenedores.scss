@@ -166,34 +166,22 @@
 }
 
 /* ===== OUR SERVICES (tarjetas apiladas al hacer scroll) ===== */
-// Cada tarjeta es sticky y se detiene un poco mas abajo que la anterior,
-// asi la siguiente la cubre y deja asomar el borde superior de las de atras.
-// js/script.js reduce la escala de las tarjetas que van quedando cubiertas.
-#services {
-    overflow: visible; // overflow: hidden en .section anula position: sticky
-}
-
+// Sin JS las tarjetas se ven como una lista normal. js/script.js agrega
+// .is-stacking: la seccion queda fija (GSAP ScrollTrigger) y cada tarjeta
+// sube sobre la anterior, que se achica y oscurece un poco.
 .services {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: 73px;
     max-width: 1280px;
 
     &__intro {
-        position: sticky;
-        top: var(--stack-top);
         display: flex;
         flex: 0 1 504px;
         flex-direction: column;
         gap: 17px;
     }
-}
-
-.services,
-.accordion-gf {
-    --stack-top: 140px;  // debajo del menu fijo
-    --stack-step: 14px;  // franja visible de cada tarjeta apilada
 }
 
 .accordion-gf {
@@ -202,16 +190,23 @@
     flex-direction: column;
 
     &__item {
-        position: sticky;
-        top: calc(var(--stack-top) + var(--i, 0) * var(--stack-step));
+        position: relative;
         margin-bottom: 40px;
         padding: 20px;
         border-radius: 22.25px;
-        box-shadow: 0 -8px 24px rgba(0, 0, 0, .12);
-        transform-origin: 50% 0;
-        will-change: transform;
 
         &:last-child { margin-bottom: 0; }
+
+        // Sombra que oscurece las tarjetas que quedan atras (GSAP anima --dim)
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: #000;
+            opacity: var(--dim, 0);
+            pointer-events: none;
+        }
 
         &--green {
             background: $colorPrincipal;
@@ -256,6 +251,23 @@
             margin-top: 22px;
             border-radius: $radioGrande;
         }
+    }
+}
+
+.accordion-gf.is-stacking {
+    position: relative;
+    display: block;
+    height: var(--stack-height);
+
+    .accordion-gf__item {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        margin: 0;
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, .15);
+        transform-origin: 50% 0;
+        will-change: transform;
     }
 }
 
