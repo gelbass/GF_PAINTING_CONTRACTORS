@@ -185,6 +185,8 @@
         top: var(--stack-top);
         display: flex;
         flex: 0 1 504px;
+        flex-direction: column;
+        gap: 17px;
     }
 }
 
