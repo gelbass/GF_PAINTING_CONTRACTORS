@@ -142,7 +142,7 @@
         }
 
         &__panel img {
-            height: 125px;
+            height: clamp(160px, 26vh, 220px);
             margin-top: 17.23px;
             border-radius: 15.48px;
         }
@@ -447,7 +447,7 @@
             }
 
             img {
-                height: 149.05px;
+                height: clamp(180px, 28vh, 300px);
                 margin-top: 13.03px;
                 border-radius: 13px;
             }
@@ -614,7 +614,7 @@
     /* Our services */
     #services .section__inner { padding: 60px 40px; }
 
-    .accordion-gf__panel img { height: 91.05px; }
+    .accordion-gf__panel img { height: clamp(160px, 27vh, 240px); }
 
     /* Our work: las dos fotos se apilan como en Figma */
     #our-work .section__inner { padding: 60px 40px; }
