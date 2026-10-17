@@ -5,7 +5,12 @@ const serviceID = "TU_SERVICE_ID"; //Remplazar
 const templateID = "TU_TEMPLATE_ID"; //Remplazar
 
 // ===== ANIMACIONES =====
-AOS.init({ duration: 700, once: true, offset: 80 });
+AOS.init({
+  duration: 700,
+  once: true,
+  offset: 80,
+  disable: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+});
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -185,7 +190,7 @@ const btn = document.getElementById("sendEmail");
 const btnText = btn.textContent;
 
 if (EMAILJS_PUBLIC_KEY !== "TU_PUBLIC_KEY") {
-  emailjs.init(EMAILJS_PUBLIC_KEY);
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 }
 
 form.addEventListener("submit", function (event) {

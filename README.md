@@ -15,7 +15,9 @@ scss/               Estilos fuente
   _media.scss       Responsive (laptop, tablet, teléfono)
 css/styles.css      CSS compilado desde scss/styles.scss
 js/script.js        Menú, acordeón de servicios, carrusel y envío del formulario con EmailJS
-img/                Imágenes e iconos exportados de Figma
+img/                Imágenes e iconos exportados de Figma (og-image.jpg 1200×630 para redes)
+robots.txt          Reglas para buscadores y enlace al sitemap
+sitemap.xml         Mapa del sitio para Google Search Console
 ```
 
 Librerías por CDN: Bootstrap 5.3.3, AOS 2.3.1, EmailJS 3 y SweetAlert2 11.
@@ -34,3 +36,7 @@ npx sass --no-source-map scss/styles.scss css/styles.css
 - Reemplazar el dominio `https://www.Mi_Pagina.com/` en las etiquetas canonical y Open Graph de `index.html`.
 - Confirmar el nombre de la empresa: el diseño dice "GF Painting Contractors".
 - Sustituir las fotos de ejemplo por fotos reales de trabajos.
+
+## Antes de publicar
+
+Reemplazar `https://TU-DOMINIO.com` por el dominio definitivo en `index.html` (canonical, Open Graph, Twitter y JSON-LD), `robots.txt` y `sitemap.xml`, y completar teléfono, email y redes en el JSON-LD.

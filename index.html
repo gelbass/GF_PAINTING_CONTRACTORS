@@ -13,32 +13,84 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="preload" as="image" href="./img/hero-building.jpg" fetchpriority="high">
+
+  <!-- SEO -->
+  <!-- TODO: reemplazar https://TU-DOMINIO.com por el dominio definitivo (aqui, en el JSON-LD, robots.txt y sitemap.xml) -->
   <title>GF Painting Contractors | Property Turnover Services</title>
   <meta name="description"
-    content="Property turnover services for property managers in Tennessee, Mississippi and Arkansas: painting, drywall repair, resurfacing, pressure washing, trash-outs and ozone treatment. Based in Olive Branch, MS.">
-  <meta name="keywords"
-    content="property turnover, painting contractors, apartment painting, drywall repair, tub resurfacing, trash-out, ozone treatment, Olive Branch, Mississippi, Tennessee, Arkansas">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="Soltecs Software & Desing">
-  <!-- TODO: reemplazar por el dominio definitivo -->
-  <link rel="canonical" href="https://www.Mi_Pagina.com/">
+    content="Property turnover services in TN, MS and AR: painting, drywall repair, resurfacing, pressure washing, trash-outs and ozone treatment. Free estimates.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="Soltecs Software &amp; Design">
+  <meta name="theme-color" content="#7ca651">
+  <link rel="canonical" href="https://TU-DOMINIO.com/">
 
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GF Painting Contractors">
+  <meta property="og:locale" content="en_US">
   <meta property="og:title" content="GF Painting Contractors | Property Turnover Services">
   <meta property="og:description"
     content="Done fast. Done right. Turnover services for property managers across the Mid-South.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.Mi_Pagina.com/">
-  <meta property="og:image" content="./img/hero-building.jpg">
+  <meta property="og:url" content="https://TU-DOMINIO.com/">
+  <meta property="og:image" content="https://TU-DOMINIO.com/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Apartment community serviced by GF Painting Contractors">
 
-  <!-- Twitter Cards para Redes Sociales -->
+  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="GF Painting Contractors">
+  <meta name="twitter:title" content="GF Painting Contractors | Property Turnover Services">
   <meta name="twitter:description" content="Done fast. Done right. Turnover services for property managers across the Mid-South.">
-  <meta name="twitter:image" content="./img/hero-building.jpg">
-  <link rel="shortcut icon" href="img/icono.ico" type="image/x-icon">
+  <meta name="twitter:image" content="https://TU-DOMINIO.com/img/og-image.jpg">
+
+  <!-- Iconos -->
+  <link rel="icon" href="img/icono.ico" sizes="any">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+  <!-- Datos estructurados (negocio local) -->
+  <!-- TODO: agregar "telephone", "email" y "sameAs" (redes sociales) cuando esten confirmados -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HousePainter",
+    "@id": "https://TU-DOMINIO.com/#business",
+    "name": "GF Painting Contractors",
+    "slogan": "Done fast. Done right.",
+    "description": "Property turnover services for property managers, homeowners and businesses: painting, drywall repair, cabinet painting, tub and countertop resurfacing, pressure washing, trash-outs and ozone treatment.",
+    "url": "https://TU-DOMINIO.com/",
+    "logo": "https://TU-DOMINIO.com/img/logo-gf.png",
+    "image": "https://TU-DOMINIO.com/img/og-image.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Olive Branch",
+      "addressRegion": "MS",
+      "addressCountry": "US"
+    },
+    "areaServed": [
+      { "@type": "State", "name": "Tennessee" },
+      { "@type": "State", "name": "Mississippi" },
+      { "@type": "State", "name": "Arkansas" }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Property services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Interior & Exterior Painting" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Drywall & Surface Repair" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cabinet Painting" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tub & Countertop Resurfacing" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pressure Washing" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Trash-Out Services" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ozone Treatment" } }
+      ]
+    }
+  }
+  </script>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <!-- MENU INICIO-->
   <header id="header" class="container__header">
     <nav class="navbar container__menu" id="menu">
@@ -60,7 +112,7 @@
   </header>
   <!-- MENU FIN-->
 
-  <main>
+  <main id="main">
     <!-- HOME INICIO-->
     <section id="home" class="section section--hero">
       <div class="hero">
@@ -75,7 +127,7 @@
           <a class="btn-gf btn-gf--green btn-gf--lg" href="#contactUs">Request a free estimate</a>
         </div>
         <div class="hero__image" data-aos="fade-left">
-          <img src="./img/hero-building.jpg" alt="Apartment community ready for new tenants" width="1360" height="907">
+          <img src="./img/hero-building.jpg" alt="Apartment community ready for new tenants" width="1360" height="907" fetchpriority="high">
         </div>
         <div class="hero__seal">
           <img src="./img/sello-gf.png" alt="" width="88" height="89">
@@ -87,7 +139,7 @@
     <!--SECCIONES INICIO-->
     <!-- SOLUTIONS -->
     <section id="solutions" class="section section--dark">
-      <img class="section__glow" src="./img/glow.png" alt="" aria-hidden="true">
+      <img class="section__glow" src="./img/glow.png" alt="" width="624" height="523" loading="lazy" aria-hidden="true">
       <div class="section__inner">
         <div class="section__heading section__heading--center" data-aos="fade-up">
           <h2 class="title title--light">Solutions Tailored to Your Property.</h2>
@@ -96,7 +148,7 @@
         </div>
         <div class="solutions">
           <article class="photo-card" data-aos="fade-up">
-            <img class="photo-card__img" src="./img/card-property-management.jpg" alt="GF Painting Contractors crew member at an apartment community"
+            <img class="photo-card__img" src="./img/card-property-management.jpg" width="800" height="1200" alt="GF Painting Contractors crew member at an apartment community"
               loading="lazy">
             <div class="photo-card__body">
               <h3 class="photo-card__title">Property Management</h3>
@@ -104,7 +156,7 @@
             </div>
           </article>
           <article class="photo-card" data-aos="fade-up" data-aos-delay="100">
-            <img class="photo-card__img photo-card__img--residential" src="./img/card-residential.jpg"
+            <img class="photo-card__img photo-card__img--residential" src="./img/card-residential.jpg" width="1200" height="600"
               alt="GF Painting Contractors truck and crew at a residential property" loading="lazy">
             <div class="photo-card__body">
               <h3 class="photo-card__title">Residential</h3>
@@ -112,7 +164,7 @@
             </div>
           </article>
           <article class="photo-card" data-aos="fade-up" data-aos-delay="200">
-            <img class="photo-card__img" src="./img/card-commercial.jpg" alt="GF Painting Contractors painters working on a commercial interior"
+            <img class="photo-card__img" src="./img/card-commercial.jpg" width="800" height="1200" alt="GF Painting Contractors painters working on a commercial interior"
               loading="lazy">
             <div class="photo-card__body">
               <h3 class="photo-card__title">Commercial</h3>
@@ -138,7 +190,7 @@
             <div class="accordion-gf__panel">
               <p>Professional painting for apartments, homes, and commercial spaces. We deliver crisp, durable finishes
                 that instantly modernize your property and boost its value.</p>
-              <img src="./img/service-painting.jpg" alt="" loading="lazy">
+              <img src="./img/service-painting.jpg" alt="Painters finishing an interior wall and exterior siding" width="1400" height="933" loading="lazy">
             </div>
           </div>
           <div class="accordion-gf__item accordion-gf__item--black">
@@ -146,7 +198,7 @@
             <div class="accordion-gf__panel">
               <p>From patching tenant nail holes to fixing major water damage. We restore your walls to a flawless,
                 smooth finish ready for a perfect coat of paint.</p>
-              <img src="./img/service-resurfacing.jpg" alt="" loading="lazy">
+              <img src="./img/service-resurfacing.jpg" alt="Technician refinishing a bathtub surface" width="1400" height="933" loading="lazy">
             </div>
           </div>
           <div class="accordion-gf__item accordion-gf__item--white">
@@ -154,7 +206,7 @@
             <div class="accordion-gf__panel">
               <p>Don't replace—reface. We professionally prime and paint outdated kitchen and bathroom cabinets, giving
                 you a modern look at a fraction of the cost.</p>
-              <img src="./img/service-cabinet.jpg" alt="" loading="lazy">
+              <img src="./img/service-cabinet.jpg" alt="Painter refinishing kitchen cabinets" width="1400" height="933" loading="lazy">
             </div>
           </div>
           <div class="accordion-gf__item accordion-gf__item--orange">
@@ -162,7 +214,7 @@
             <div class="accordion-gf__panel">
               <p>Erase stains, chips, and outdated colors. Our specialized glazing process restores worn-out surfaces,
                 making them look brand-new and move-in ready in hours.</p>
-              <img src="./img/service-resurfacing.jpg" alt="" loading="lazy">
+              <img src="./img/service-resurfacing.jpg" alt="Tub resurfacing in progress" width="1400" height="933" loading="lazy">
             </div>
           </div>
           <div class="accordion-gf__item accordion-gf__item--white">
@@ -170,7 +222,7 @@
             <div class="accordion-gf__panel">
               <p>Blast away dirt, mold, and grime from siding, walkways, and breezeways. We deep-clean your exteriors to
                 instantly upgrade your property’s curb appeal.</p>
-              <img src="./img/service-trash-out.jpg" alt="" loading="lazy">
+              <img src="./img/service-trash-out.jpg" alt="GF Painting Contractors crew working outside an apartment building" width="1400" height="933" loading="lazy">
             </div>
           </div>
           <div class="accordion-gf__item accordion-gf__item--green">
@@ -178,7 +230,7 @@
             <div class="accordion-gf__panel">
               <p>Leftover debris and junk cleared out fast. We handle the heavy lifting and responsible disposal,
                 minimizing unit downtime so you can rent it out sooner.</p>
-              <img src="./img/service-trash-out.jpg" alt="" loading="lazy">
+              <img src="./img/service-trash-out.jpg" alt="Crew hauling furniture and debris to a trash-out trailer" width="1400" height="933" loading="lazy">
             </div>
           </div>
           <div class="accordion-gf__item accordion-gf__item--black">
@@ -186,7 +238,7 @@
             <div class="accordion-gf__panel">
               <p>Permanently destroy deep-seated odors from smoke, pets, and food. Our professional ozone generators
                 ensure a truly fresh, clean unit for the next occupant.</p>
-              <img src="./img/service-ozone.jpg" alt="" loading="lazy">
+              <img src="./img/service-ozone.jpg" alt="Ozone generator removing odors in an empty unit" width="1400" height="933" loading="lazy">
             </div>
           </div>
         </div>
@@ -195,7 +247,7 @@
 
     <!-- OUR WORK -->
     <section id="our-work" class="section section--dark">
-      <img class="section__glow section__glow--low" src="./img/glow.png" alt="" aria-hidden="true">
+      <img class="section__glow section__glow--low" src="./img/glow.png" alt="" width="624" height="523" loading="lazy" aria-hidden="true">
       <div class="section__inner">
         <div class="section__heading" data-aos="fade-up">
           <p class="eyebrow eyebrow--orange">Our Work</p>
@@ -205,9 +257,9 @@
         </div>
         <div class="carousel-gf" data-aos="fade-up">
           <div class="carousel-gf__track" id="workTrack" tabindex="0" aria-label="Project photos">
-            <figure class="carousel-gf__slide"><img src="./img/service-painting.jpg" alt="Painters finishing an interior wall and an exterior siding" loading="lazy"></figure>
-            <figure class="carousel-gf__slide"><img src="./img/service-cabinet.jpg" alt="Painter refinishing kitchen cabinets" loading="lazy"></figure>
-            <figure class="carousel-gf__slide"><img src="./img/service-resurfacing.jpg" alt="Tub resurfacing in progress" loading="lazy"></figure>
+            <figure class="carousel-gf__slide"><img src="./img/service-painting.jpg" width="1400" height="933" alt="Painters finishing an interior wall and an exterior siding" loading="lazy"></figure>
+            <figure class="carousel-gf__slide"><img src="./img/service-cabinet.jpg" width="1400" height="933" alt="Painter refinishing kitchen cabinets" loading="lazy"></figure>
+            <figure class="carousel-gf__slide"><img src="./img/service-resurfacing.jpg" width="1400" height="933" alt="Tub resurfacing in progress" loading="lazy"></figure>
           </div>
           <div class="carousel-gf__footer">
             <a class="btn-gf btn-gf--green btn-gf--lg" href="#contactUs">Request a free estimate</a>
@@ -272,7 +324,7 @@
 
     <!-- SERVICE AREA -->
     <section id="service-area" class="section section--dark section--auto">
-      <img class="section__glow" src="./img/glow.png" alt="" aria-hidden="true">
+      <img class="section__glow" src="./img/glow.png" alt="" width="624" height="523" loading="lazy" aria-hidden="true">
       <div class="section__inner area">
         <div class="area__content" data-aos="fade-right">
           <div class="section__heading">
@@ -372,16 +424,16 @@
   </footer>
   <!-- FOOTER FIN-->
 
-  <!-- SCRIPT EVIO MAIL-->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  <!-- SCRIPTS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-  <script type="text/javascript" src="./js/script.js"></script>
+  <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="./js/script.js"></script>
 </body>
 
 </html>
