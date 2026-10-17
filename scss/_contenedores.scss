@@ -13,10 +13,7 @@
 }
 
 .container__menu {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
+    @include containers(null, null, flex, null, 10px 20px, row, space-between, center);
     border-radius: $radioGrande;
     background: rgba(255, 255, 255, .92);
     backdrop-filter: blur(5px);
@@ -100,11 +97,7 @@
     margin: 0 auto;
 
     &__content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 120px 40px 40px;
+        @include containers(null, null, flex, null, 120px 40px 40px, column, center, flex-start);
         border-radius: $radioGrande;
         background: $colorCrema;
     }
@@ -133,11 +126,7 @@
         position: absolute;
         top: 630px;
         left: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 114px;
-        height: 114px;
+        @include containers(114px, 114px, flex, null, null, row, center, center);
         border-radius: 50%;
         background: #fff;
         transform: translateX(-50%);
@@ -154,11 +143,7 @@
 
 .photo-card {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: 489px;
-    padding: 10px;
+    @include containers(null, 489px, flex, null, 10px, column, flex-end, null);
     overflow: hidden;
     border-radius: 22.25px;
 
@@ -200,8 +185,6 @@
         top: var(--stack-top);
         display: flex;
         flex: 0 1 504px;
-        flex-direction: column;
-        gap: 17px;
     }
 }
 
@@ -299,16 +282,12 @@
     }
 
     &__footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
+        @include containers(null, null, flex, 20px, null, row, space-between, center);
         margin-top: 43px;
     }
 
     &__controls {
-        display: flex;
-        gap: 20px;
+        @include containers(null, null, flex, 20px, null, row, null, null);
 
         .round-icon {
             transition: transform .2s ease, background-color .2s ease;
@@ -326,20 +305,14 @@
 }
 
 .why__banner {
-    display: flex;
-    flex-direction: column;
-    gap: 17px;
-    padding: 30px;
+    @include containers(null, null, flex, 17px, 30px, column, null, null);
     border-radius: $radioGrande;
     background: $colorTextN;
     text-align: center;
 }
 
 .why {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 60px;
+    @include containers(null, null, flex, 60px, null, row, space-between, center);
     margin-top: 52px;
 
     &__text {
@@ -356,17 +329,12 @@
 }
 
 .feature {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 20px;
+    @include containers(null, null, flex, 12px, 20px, column, null, null);
     border-radius: $radioGrande;
     background: #fff;
 
     &__head {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        @include containers(null, null, flex, 10px, null, row, null, center);
     }
 
     &__title {
@@ -397,15 +365,11 @@
 }
 
 .area {
-    display: flex;
-    align-items: center;
-    gap: 73px;
+    @include containers(null, null, flex, 73px, null, row, null, center);
 
     &__content {
-        display: flex;
+        @include containers(null, null, flex, 73px, null, column, null, null);
         flex: 1 1 0;
-        flex-direction: column;
-        gap: 73px;
     }
 
     &__states {
@@ -419,28 +383,20 @@
 
 /* ===== CONTACT ===== */
 .contact {
-    display: flex;
-    align-items: center;
-    gap: 90px;
+    @include containers(null, null, flex, 90px, null, row, null, center);
 
     &__intro {
-        display: flex;
+        @include containers(null, null, flex, 50px, null, column, null, null);
         flex: 0 0 429px;
-        flex-direction: column;
-        gap: 50px;
     }
 
     &__form {
-        display: flex;
+        @include containers(null, null, flex, 20px, null, column, null, null);
         flex: 1 1 0;
-        flex-direction: column;
-        gap: 20px;
     }
 
     &__footer {
-        display: flex;
-        align-items: center;
-        gap: 50px;
+        @include containers(null, null, flex, 50px, null, row, null, center);
         margin-top: 34px;
 
         .btn-gf { flex: 0 0 375px; }
@@ -465,9 +421,7 @@
 }
 
 .field {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    @include containers(null, null, flex, 5px, null, column, null, null);
 
     label {
         font-size: 20px;
@@ -535,11 +489,7 @@
 
 /* ===== FOOTER ===== */
 .footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 40px 20px;
+    @include containers(null, null, flex, 10px, 40px 20px, column, null, center);
     background: #fff;
     text-align: center;
     font-size: 15px;

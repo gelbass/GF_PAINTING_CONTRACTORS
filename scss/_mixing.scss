@@ -1,10 +1,11 @@
 @use 'sass:map';
 @use "_variables" as *;
 
-@mixin containers($width: '100%',$height: '100vh',$display:null,$gap:'0px',$padding:'0px',$direction: 'column',$justify: 'center',$align: 'center') {
+// Los valores sin comillas evitan que Sass escriba width: "100%" (CSS invalido).
+// Pasar null en un argumento omite esa propiedad.
+@mixin containers($width: 100%,$height: 100vh,$display:null,$gap:0px,$padding:0px,$direction: column,$justify: center,$align: center) {
     width: $width;
     height: $height;
-    display: $display;
     gap: $gap;
     padding: $padding;
 

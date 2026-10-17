@@ -143,6 +143,7 @@ a {
   position: relative;
   min-height: 832px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   overflow: hidden;
 }
@@ -164,9 +165,9 @@ a {
   padding: 77px 40px;
 }
 .section__heading {
+  gap: 17px;
   display: flex;
   flex-direction: column;
-  gap: 17px;
 }
 .section__heading--center {
   text-align: center;
@@ -184,10 +185,11 @@ a {
 }
 
 .container__menu {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(5px);
@@ -267,11 +269,11 @@ a {
   margin: 0 auto;
 }
 .hero__content {
+  padding: 120px 40px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 120px 40px 40px;
   border-radius: 20px;
   background: #f5f3ed;
 }
@@ -313,11 +315,12 @@ a {
   position: absolute;
   top: 630px;
   left: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 114px;
   height: 114px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   background: #fff;
   transform: translateX(-50%);
@@ -333,11 +336,11 @@ a {
 
 .photo-card {
   position: relative;
+  height: 489px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 489px;
-  padding: 10px;
   overflow: hidden;
   border-radius: 22.25px;
 }
@@ -385,8 +388,6 @@ a {
   top: var(--stack-top);
   display: flex;
   flex: 0 1 504px;
-  flex-direction: column;
-  gap: 17px;
 }
 
 .services,
@@ -477,15 +478,17 @@ a {
   scroll-snap-align: start;
 }
 .carousel-gf__footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 43px;
 }
 .carousel-gf__controls {
-  display: flex;
   gap: 20px;
+  display: flex;
+  flex-direction: row;
 }
 .carousel-gf__controls .round-icon {
   transition: transform 0.2s ease, background-color 0.2s ease;
@@ -504,20 +507,21 @@ a {
 }
 
 .why__banner {
-  display: flex;
-  flex-direction: column;
   gap: 17px;
   padding: 30px;
+  display: flex;
+  flex-direction: column;
   border-radius: 20px;
   background: #000;
   text-align: center;
 }
 
 .why {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 52px;
 }
 .why__text {
@@ -538,17 +542,18 @@ a {
 }
 
 .feature {
-  display: flex;
-  flex-direction: column;
   gap: 12px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
   border-radius: 20px;
   background: #fff;
 }
 .feature__head {
-  display: flex;
-  align-items: center;
   gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .feature__title {
   margin: 0;
@@ -582,15 +587,16 @@ a {
 }
 
 .area {
-  display: flex;
-  align-items: center;
   gap: 73px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .area__content {
-  display: flex;
-  flex: 1 1 0;
-  flex-direction: column;
   gap: 73px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
 }
 .area__states {
   font-family: "Plus Jakarta Sans", sans-serif;
@@ -607,26 +613,28 @@ a {
 
 /* ===== CONTACT ===== */
 .contact {
-  display: flex;
-  align-items: center;
   gap: 90px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .contact__intro {
-  display: flex;
-  flex: 0 0 429px;
-  flex-direction: column;
   gap: 50px;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 429px;
 }
 .contact__form {
-  display: flex;
-  flex: 1 1 0;
-  flex-direction: column;
   gap: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
 }
 .contact__footer {
-  display: flex;
-  align-items: center;
   gap: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin-top: 34px;
 }
 .contact__footer .btn-gf {
@@ -652,9 +660,9 @@ a {
 }
 
 .field {
+  gap: 5px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
 }
 .field label {
   font-size: 20px;
@@ -717,11 +725,11 @@ a {
 
 /* ===== FOOTER ===== */
 .footer {
+  gap: 10px;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 40px 20px;
   background: #fff;
   text-align: center;
   font-size: 15px;

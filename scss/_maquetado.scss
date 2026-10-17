@@ -111,8 +111,7 @@ a {
 .section {
     position: relative;
     min-height: 832px;
-    display: flex;
-    align-items: center;
+    @include containers(null, null, flex, null, null, row, null, center);
     overflow: hidden;
 
     &--auto { min-height: 0; }
@@ -129,9 +128,7 @@ a {
     }
 
     &__heading {
-        display: flex;
-        flex-direction: column;
-        gap: 17px;
+        @include containers(null, null, flex, 17px, null, column, null, null);
 
         &--center { text-align: center; }
     }
