@@ -13,10 +13,7 @@
 }
 
 .container__menu {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
+    @include containers(null, null, flex, null, 10px 20px, row, space-between, center);
     border-radius: $radioGrande;
     background: rgba(255, 255, 255, .92);
     backdrop-filter: blur(5px);
@@ -28,27 +25,58 @@
 }
 
 .container__menu--items {
+    flex-direction: row;
     gap: 10px;
     margin: 0 auto;
 }
 
+// Estados del componente Menu de Figma: default, hover y selected
 .container__menu--item {
     padding: 10px !important;
+    border: 1px solid transparent;
+    border-radius: 10px;
     font-size: 15px;
     font-weight: 700;
+    line-height: 1;
     color: $colorTextN !important;
-    transition: color .2s ease;
+    transition: color .2s ease, border-color .2s ease, background-color .2s ease;
 
-    &:hover, &:focus-visible, &.active {
-        color: $colorPrincipal !important;
+    &:hover, &:focus-visible {
+        border-color: $colorSegundario;
+        font-weight: 400;
+        color: $colorSegundario !important;
+    }
+
+    &.active {
+        border-color: $colorPrincipal;
+        background: $colorPrincipal;
+        font-weight: 700;
+        color: $colorTextB !important;
     }
 }
 
 .container__menu--toggler {
+    display: none;
     border: 0;
-    padding: 10px;
+    padding: 0;
+
+    img { display: block; }
 
     &:focus { box-shadow: none; }
+}
+
+// El menu se muestra completo por encima de 860px (diseño de 991px y escritorio)
+@media (min-width: 861px) {
+    .container__menu {
+        flex-wrap: nowrap;
+    }
+
+    #navbarNav {
+        display: flex !important;
+        flex-basis: auto;
+        flex-grow: 1;
+        align-items: center;
+    }
 }
 
 /* ===== HERO ===== */
@@ -69,11 +97,7 @@
     margin: 0 auto;
 
     &__content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 120px 40px 40px;
+        @include containers(null, null, flex, null, 120px 40px 40px, column, center, flex-start);
         border-radius: $radioGrande;
         background: $colorCrema;
     }
@@ -102,11 +126,7 @@
         position: absolute;
         top: 630px;
         left: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 114px;
-        height: 114px;
+        @include containers(114px, 114px, flex, null, null, row, center, center);
         border-radius: 50%;
         background: #fff;
         transform: translateX(-50%);
@@ -123,11 +143,7 @@
 
 .photo-card {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: 489px;
-    padding: 10px;
+    @include containers(null, 489px, flex, null, 10px, column, flex-end, null);
     overflow: hidden;
     border-radius: 22.25px;
 
@@ -149,20 +165,35 @@
     }
 }
 
-/* ===== OUR SERVICES (acordeon) ===== */
+/* ===== OUR SERVICES (tarjetas apiladas al hacer scroll) ===== */
+// Cada tarjeta es sticky y se detiene un poco mas abajo que la anterior,
+// asi la siguiente la cubre y deja asomar el borde superior de las de atras.
+// js/script.js reduce la escala de las tarjetas que van quedando cubiertas.
+#services {
+    overflow: visible; // overflow: hidden en .section anula position: sticky
+}
+
 .services {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 73px;
     max-width: 1280px;
 
     &__intro {
+        position: sticky;
+        top: var(--stack-top);
         display: flex;
         flex: 0 1 504px;
         flex-direction: column;
         gap: 17px;
     }
+}
+
+.services,
+.accordion-gf {
+    --stack-top: 140px;  // debajo del menu fijo
+    --stack-step: 14px;  // franja visible de cada tarjeta apilada
 }
 
 .accordion-gf {
@@ -171,15 +202,16 @@
     flex-direction: column;
 
     &__item {
-        position: relative;
-        margin-bottom: -22px;
-        padding: 20px 20px 42px;
+        position: sticky;
+        top: calc(var(--stack-top) + var(--i, 0) * var(--stack-step));
+        margin-bottom: 40px;
+        padding: 20px;
         border-radius: 22.25px;
+        box-shadow: 0 -8px 24px rgba(0, 0, 0, .12);
+        transform-origin: 50% 0;
+        will-change: transform;
 
-        &:last-child {
-            margin-bottom: 0;
-            padding-bottom: 20px;
-        }
+        &:last-child { margin-bottom: 0; }
 
         &--green {
             background: $colorPrincipal;
@@ -205,31 +237,14 @@
     }
 
     &__header {
-        display: block;
-        width: 100%;
-        padding: 0;
-        border: 0;
-        background: none;
+        margin: 0 0 12px;
         color: inherit;
         font-size: 23px;
         font-weight: 700;
         line-height: 1.5;
-        text-align: left;
-        cursor: pointer;
-
-        &:focus-visible {
-            outline: 2px solid currentColor;
-            outline-offset: 4px;
-            border-radius: 4px;
-        }
     }
 
     &__panel {
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: max-height .4s ease, opacity .3s ease;
-
         p {
             margin: 0;
             font-size: 16px;
@@ -237,15 +252,10 @@
         }
 
         img {
-            height: 270px;
+            height: 230px;
             margin-top: 22px;
             border-radius: $radioGrande;
         }
-    }
-
-    &__item.is-open &__panel {
-        max-height: 420px;
-        opacity: 1;
     }
 }
 
@@ -274,20 +284,16 @@
     }
 
     &__footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
+        @include containers(null, null, flex, 20px, null, row, space-between, center);
         margin-top: 43px;
     }
 
     &__controls {
-        display: flex;
-        gap: 20px;
+        @include containers(null, null, flex, 20px, null, row, null, null);
 
         .round-icon {
             transition: transform .2s ease, background-color .2s ease;
-            &:hover { background: #c9612a; }
+            &:hover, &:focus-visible { background: $colorPrincipal; }
         }
     }
 
@@ -301,20 +307,14 @@
 }
 
 .why__banner {
-    display: flex;
-    flex-direction: column;
-    gap: 17px;
-    padding: 30px;
+    @include containers(null, null, flex, 17px, 30px, column, null, null);
     border-radius: $radioGrande;
     background: $colorTextN;
     text-align: center;
 }
 
 .why {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 60px;
+    @include containers(null, null, flex, 60px, null, row, space-between, center);
     margin-top: 52px;
 
     &__text {
@@ -331,17 +331,12 @@
 }
 
 .feature {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 20px;
+    @include containers(null, null, flex, 12px, 20px, column, null, null);
     border-radius: $radioGrande;
     background: #fff;
 
     &__head {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        @include containers(null, null, flex, 10px, null, row, null, center);
     }
 
     &__title {
@@ -357,21 +352,26 @@
 }
 
 /* ===== SERVICE AREA ===== */
+#services .section__inner {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+#service-area {
+    min-height: 675px;
+}
+
 #service-area .section__inner {
     padding: 69px 56px;
     max-width: 1280px;
 }
 
 .area {
-    display: flex;
-    align-items: center;
-    gap: 73px;
+    @include containers(null, null, flex, 73px, null, row, null, center);
 
     &__content {
-        display: flex;
+        @include containers(null, null, flex, 73px, null, column, null, null);
         flex: 1 1 0;
-        flex-direction: column;
-        gap: 73px;
     }
 
     &__states {
@@ -385,28 +385,20 @@
 
 /* ===== CONTACT ===== */
 .contact {
-    display: flex;
-    align-items: center;
-    gap: 90px;
+    @include containers(null, null, flex, 90px, null, row, null, center);
 
     &__intro {
-        display: flex;
+        @include containers(null, null, flex, 50px, null, column, null, null);
         flex: 0 0 429px;
-        flex-direction: column;
-        gap: 50px;
     }
 
     &__form {
-        display: flex;
+        @include containers(null, null, flex, 20px, null, column, null, null);
         flex: 1 1 0;
-        flex-direction: column;
-        gap: 20px;
     }
 
     &__footer {
-        display: flex;
-        align-items: center;
-        gap: 50px;
+        @include containers(null, null, flex, 50px, null, row, null, center);
         margin-top: 34px;
 
         .btn-gf { flex: 0 0 375px; }
@@ -431,9 +423,7 @@
 }
 
 .field {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    @include containers(null, null, flex, 5px, null, column, null, null);
 
     label {
         font-size: 20px;
@@ -501,11 +491,7 @@
 
 /* ===== FOOTER ===== */
 .footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 40px 20px;
+    @include containers(null, null, flex, 10px, 40px 20px, column, null, center);
     background: #fff;
     text-align: center;
     font-size: 15px;
