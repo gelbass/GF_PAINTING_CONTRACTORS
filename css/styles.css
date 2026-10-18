@@ -24,6 +24,25 @@ a {
   text-decoration: none;
 }
 
+/* Enlace "Skip to content": oculto hasta que recibe foco con el teclado */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 2000;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #000;
+  color: #fff;
+  font-weight: 700;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+  color: #fff;
+}
+
 /* ===== TEXTOS ===== */
 .eyebrow {
   font-family: "Plus Jakarta Sans", sans-serif;
@@ -774,6 +793,14 @@ a {
 
 img {
   max-width: 100%;
+  height: auto;
+}
+
+picture {
+  display: contents;
+}
+picture source {
+  display: none;
 }
 
 .imgMenu {

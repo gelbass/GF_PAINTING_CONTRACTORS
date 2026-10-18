@@ -1,0 +1,11 @@
+{
+  "name": "gf-painting-contractors",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "imagenes": "node scripts/optimizar-imagenes.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.4"
+  }
+}

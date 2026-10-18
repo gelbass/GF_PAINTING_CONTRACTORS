@@ -3,6 +3,14 @@
 
 img {
     max-width: 100%;
+    height: auto;
+}
+
+// <picture> solo elige el formato (AVIF/WebP/JPG): no debe alterar el maquetado de la imagen
+picture {
+    display: contents;
+
+    source { display: none; }
 }
 
 .imgMenu {
