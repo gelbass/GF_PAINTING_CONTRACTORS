@@ -19,13 +19,22 @@ picture {
     height: auto;
 }
 
-.hero__image img {
+.hero__image img,
+.hero__video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 0;
+    object-position: 50% 50%;
+}
+
+// Invisible hasta que empieza a reproducirse: mientras tanto se ve la imagen (su primer cuadro)
+.hero__video {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+
+    &.is-playing { opacity: 1; }
 }
 
 .hero__seal img {
