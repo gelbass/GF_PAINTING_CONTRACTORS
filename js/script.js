@@ -14,6 +14,40 @@ AOS.init({
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
+// ===== HERO: VIDEO DE FONDO =====
+// Se descarga cuando la pagina ya termino de cargar, y no se descarga si el usuario pidio
+// menos movimiento, ahorro de datos o tiene una conexion muy lenta. Mientras tanto (o si el
+// navegador no deja reproducirlo, p. ej. iPhone en modo de bajo consumo) queda la imagen.
+const heroVideo = document.querySelector(".hero__video");
+const conexion = navigator.connection || {};
+const videoPermitido =
+  heroVideo &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+  !conexion.saveData &&
+  !/2g/.test(conexion.effectiveType || "");
+
+const iniciarHeroVideo = () => {
+  // Deja solo la version de este tamano de pantalla (escritorio o movil) aunque el navegador
+  // no soporte media en <source>
+  heroVideo.querySelectorAll("source[media]").forEach((source) => {
+    if (!window.matchMedia(source.media).matches) source.remove();
+  });
+  heroVideo.muted = true;
+  heroVideo.addEventListener("playing", () => heroVideo.classList.add("is-playing"), { once: true });
+  heroVideo.load();
+
+  // Solo se reproduce mientras esta en pantalla: ahorra bateria y CPU
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) heroVideo.play().catch(() => {});
+    else heroVideo.pause();
+  }).observe(heroVideo);
+};
+
+if (videoPermitido) {
+  if (document.readyState === "complete") iniciarHeroVideo();
+  else window.addEventListener("load", iniciarHeroVideo, { once: true });
+}
+
 // ===== MENU: cerrar al elegir una opcion en movil =====
 const navbarNav = document.getElementById("navbarNav");
 navbarNav.querySelectorAll("a").forEach((link) => {

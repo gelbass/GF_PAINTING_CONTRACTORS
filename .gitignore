@@ -1,1 +1,5 @@
 node_modules/
+
+# Video original del hero: pesa 36 MB, solo se suben las versiones optimizadas
+video/*.MOV
+video/*.mov

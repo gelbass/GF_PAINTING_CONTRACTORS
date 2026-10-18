@@ -133,10 +133,20 @@
         </div>
         <div class="hero__image" data-aos="fade-left">
           <picture>
-            <source type="image/avif" srcset="./img/hero-building-1360.avif">
-            <source type="image/webp" srcset="./img/hero-building-1360.webp">
-            <img src="./img/hero-building.jpg" alt="Apartment community ready for new tenants" width="1360" height="907" fetchpriority="high">
+            <source media="(min-width: 861px)" type="image/avif" srcset="./img/hero-video-desktop-864.avif">
+            <source media="(min-width: 861px)" type="image/webp" srcset="./img/hero-video-desktop-864.webp">
+            <source media="(min-width: 861px)" srcset="./img/hero-video-desktop.jpg">
+            <source type="image/avif" srcset="./img/hero-video-mobile-720.avif">
+            <source type="image/webp" srcset="./img/hero-video-mobile-720.webp">
+            <img src="./img/hero-video-mobile.jpg" alt="GF Painting Contractors crew painting an apartment interior" width="720" height="720" fetchpriority="high">
           </picture>
+          <!-- Video de fondo: js/script.js lo carga despues de la pagina; la imagen de arriba es su primer cuadro -->
+          <video class="hero__video" muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback>
+            <source media="(min-width: 861px)" type='video/mp4; codecs="av01.0.05M.08"' src="./video/hero-desktop.av1.mp4">
+            <source media="(min-width: 861px)" type='video/mp4; codecs="avc1.640028"' src="./video/hero-desktop.mp4">
+            <source type='video/mp4; codecs="av01.0.04M.08"' src="./video/hero-mobile.av1.mp4">
+            <source type='video/mp4; codecs="avc1.640028"' src="./video/hero-mobile.mp4">
+          </video>
         </div>
         <div class="hero__seal">
           <picture>
