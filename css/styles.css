@@ -796,6 +796,13 @@ img {
   height: auto;
 }
 
+picture {
+  display: contents;
+}
+picture source {
+  display: none;
+}
+
 .imgMenu {
   display: block;
   width: 192px;
