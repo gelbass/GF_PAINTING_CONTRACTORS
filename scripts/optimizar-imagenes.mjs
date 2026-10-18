@@ -7,7 +7,7 @@ import { stat } from "node:fs/promises";
 // anchos: tamaños a generar (nunca se agranda la imagen original)
 const imagenes = [
   { archivo: "hero-video-desktop.jpg", anchos: [864] },
-  { archivo: "hero-video-mobile.jpg", anchos: [720] },
+  { archivo: "hero-video-mobile.jpg", anchos: [1080] },
   { archivo: "card-property-management.jpg", anchos: [400, 800] },
   { archivo: "card-commercial.jpg", anchos: [400, 800] },
   { archivo: "card-residential.jpg", anchos: [600, 1200] },
