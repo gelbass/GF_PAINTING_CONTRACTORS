@@ -4,7 +4,8 @@
 import sharp from "sharp";
 import { stat } from "node:fs/promises";
 
-// anchos: tamaños a generar (nunca se agranda la imagen original)
+// anchos: tamaños a generar (nunca se agranda la imagen original: si un ancho la supera, se usa el
+// ancho original, p. ej. service-painting-1264)
 const imagenes = [
   { archivo: "hero-video-desktop.jpg", anchos: [864] },
   { archivo: "hero-video-mobile.jpg", anchos: [1080] },
@@ -12,10 +13,28 @@ const imagenes = [
   { archivo: "card-commercial.jpg", anchos: [400, 800] },
   { archivo: "card-residential.jpg", anchos: [600, 1200] },
   { archivo: "service-painting.jpg", anchos: [480, 800, 1400] },
-  { archivo: "service-resurfacing.jpg", anchos: [480, 800, 1400] },
+  { archivo: "service-drywall.jpg", anchos: [480, 800, 1400] },
   { archivo: "service-cabinet.jpg", anchos: [480, 800, 1400] },
+  { archivo: "service-resurfacing.jpg", anchos: [480, 800, 1400] },
+  { archivo: "service-pressure-washing.jpg", anchos: [480, 800, 1400] },
   { archivo: "service-trash-out.jpg", anchos: [480, 800, 1400] },
   { archivo: "service-ozone.jpg", anchos: [480, 800, 1400] },
+  // Our Work: fotos reales de trabajos (antes / despues)
+  { archivo: "work-ceiling-leak-before.jpg", anchos: [480, 800, 1200] },
+  { archivo: "work-ceiling-leak-after.jpg", anchos: [480, 800, 1200] },
+  { archivo: "work-closet-ceiling-before.jpg", anchos: [480, 800, 1200] },
+  { archivo: "work-closet-ceiling-after.jpg", anchos: [480, 800, 1200] },
+  { archivo: "work-shower-wall-before.jpg", anchos: [480, 800, 1200] },
+  { archivo: "work-shower-wall-after.jpg", anchos: [480, 800, 1200] },
+  { archivo: "work-ceiling-opening-before.jpg", anchos: [480, 800, 1200] },
+  { archivo: "work-ceiling-opening-after.jpg", anchos: [480, 800, 1200] },
+  { archivo: "work-drywall-corner-before.jpg", anchos: [480, 800, 1200] },
+  { archivo: "work-drywall-corner-after.jpg", anchos: [480, 800, 1200] },
+  { archivo: "work-hallway-ceiling-before.jpg", anchos: [480, 800, 1200] },
+  { archivo: "work-hallway-ceiling-after.jpg", anchos: [480, 800, 1200] },
+  { archivo: "work-bathroom-ceiling.jpg", anchos: [480, 800, 1200] },
+  { archivo: "work-siding-before.jpg", anchos: [480, 800, 1200] },
+  { archivo: "work-siding-repair.jpg", anchos: [480, 800, 1200] },
   { archivo: "logo-gf.png", anchos: [200, 400, 600] },
   { archivo: "sello-gf.png", anchos: [150, 300] },
 ];
@@ -27,7 +46,7 @@ for (const { archivo, anchos } of imagenes) {
   const nombre = archivo.replace(/\.\w+$/, "");
   const { width } = await sharp(origen).metadata();
 
-  for (const ancho of anchos.filter((a) => a <= width)) {
+  for (const ancho of new Set(anchos.map((a) => Math.min(a, width)))) {
     const base = sharp(origen).resize({ width: ancho });
     const avif = `img/${nombre}-${ancho}.avif`;
     const webp = `img/${nombre}-${ancho}.webp`;
