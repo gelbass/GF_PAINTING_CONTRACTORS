@@ -900,6 +900,14 @@ picture source {
   height: auto;
 }
 
+.foto-completa {
+  object-fit: contain !important;
+  background-color: #1a1a1a;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 /* =========================================================
    LAPTOPS PEQUEÑAS Y TABLETS GRANDES (Figma: 991px)
    ========================================================= */
