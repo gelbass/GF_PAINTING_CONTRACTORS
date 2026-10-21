@@ -19,7 +19,7 @@ const imagenes = [
   { archivo: "service-cabinet.jpg", anchos: [480, 800, 1400], fondo: true },
   { archivo: "service-resurfacing.jpg", anchos: [480, 800, 1400], fondo: true },
   { archivo: "service-pressure-washing.jpg", anchos: [480, 800, 1400], fondo: true },
-  { archivo: "service-trash-out.jpg", anchos: [480, 800, 1400] },
+  { archivo: "service-trash-out.jpg", anchos: [480, 800, 1400], fondo: true },
   { archivo: "service-ozone.jpg", anchos: [480, 800, 1400] },
   // Our Work: fotos reales de trabajos (antes / despues), recortadas a 1154x740: la proporcion de
   // la tarjeta del Figma (577x370), al doble para pantallas retina
