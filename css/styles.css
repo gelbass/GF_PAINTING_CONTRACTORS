@@ -1064,7 +1064,8 @@ picture source {
     gap: 15.48px;
   }
   .carousel-gf__slide {
-    height: 286.46px;
+    height: auto;
+    aspect-ratio: 1154/740;
     border-radius: 17.23px;
   }
   .carousel-gf__footer {
