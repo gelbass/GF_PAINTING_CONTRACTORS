@@ -100,6 +100,23 @@ const resetStack = (className) => {
   });
 };
 
+// Las tarjetas estan apiladas en el mismo lugar, asi que con loading="lazy" el navegador
+// pedia cada foto recien cuando aparecia su tarjeta y se veia cargar. Se piden todas apenas
+// termina de cargar la pagina (o antes, si el usuario ya se esta acercando a la seccion).
+if (stack) {
+  const cargarFotosServicios = () => {
+    stack.querySelectorAll('img[loading="lazy"]').forEach((img) => (img.loading = "eager"));
+    fotosObserver.disconnect();
+  };
+  const fotosObserver = new IntersectionObserver(
+    ([entry]) => entry.isIntersecting && cargarFotosServicios(),
+    { rootMargin: "1500px 0px" }
+  );
+  fotosObserver.observe(stack);
+  if (document.readyState === "complete") cargarFotosServicios();
+  else window.addEventListener("load", cargarFotosServicios, { once: true });
+}
+
 // Escritorio: seccion fija con GSAP
 const buildPinnedStack = () => {
   stackStep = 14;
