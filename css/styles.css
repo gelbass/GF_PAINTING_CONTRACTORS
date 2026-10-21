@@ -474,7 +474,10 @@ a {
   line-height: 1.5;
 }
 .accordion-gf__panel img {
-  height: 230px;
+  height: auto;
+  aspect-ratio: 3/2;
+  min-height: 230px;
+  max-height: calc(100vh - 400px);
   margin-top: 22px;
   border-radius: 20px;
 }
@@ -931,6 +934,14 @@ picture source {
   height: auto;
 }
 
+.foto-completa {
+  object-fit: contain !important;
+  background-color: #1a1a1a;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 /* =========================================================
    LAPTOPS PEQUEÑAS Y TABLETS GRANDES (Figma: 991px)
    ========================================================= */
@@ -1065,7 +1076,7 @@ picture source {
     margin-bottom: 0;
   }
   .accordion-gf__panel img {
-    height: clamp(160px, 26vh, 220px);
+    min-height: 160px;
     margin-top: 17.23px;
     border-radius: 15.48px;
   }
@@ -1084,7 +1095,8 @@ picture source {
     gap: 15.48px;
   }
   .carousel-gf__slide {
-    height: 286.46px;
+    height: auto;
+    aspect-ratio: 1154/740;
     border-radius: 17.23px;
   }
   .carousel-gf__footer {
@@ -1378,7 +1390,8 @@ picture source {
     line-height: 29px;
   }
   .accordion-gf__panel img {
-    height: clamp(180px, 28vh, 300px);
+    min-height: 180px;
+    max-height: calc(100svh - 440px);
     margin-top: 13.03px;
     border-radius: 13px;
   }
@@ -1394,7 +1407,8 @@ picture source {
     gap: 13.03px;
   }
   .carousel-gf__slide {
-    height: 435px;
+    height: auto;
+    aspect-ratio: 1154/740;
     border-radius: 14.5px;
   }
   .carousel-gf__footer {
@@ -1606,31 +1620,53 @@ picture source {
   }
   .accordion-gf__panel img {
     height: clamp(110px, 32vh - 60px, 240px);
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: auto;
   }
-  /* Our work: las dos fotos se apilan como en Figma */
+  /* Our work: carrusel vertical como en el Figma (Mobile 480px): se ven dos fotos apiladas y
+     las flechas, una sobre otra, lo mueven hacia arriba y hacia abajo. Cada foto con su
+     proporcion (1154x740) para que se vea completa; 100cqw = ancho de .carousel-gf */
   #our-work .section__inner {
     padding: 60px 40px 46.7px;
   }
   .carousel-gf {
+    container-type: inline-size;
     margin-top: 60px;
   }
   .carousel-gf__track {
     grid-auto-flow: row;
     grid-auto-columns: auto;
+    grid-auto-rows: 64.1247833622cqw;
     gap: 20px;
-    overflow: visible;
+    height: calc(128.2495667244cqw + 20px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
   }
   .carousel-gf__slide {
-    height: 435px;
-  }
-  .carousel-gf__slide:nth-child(n+3) {
-    display: none;
+    height: auto;
   }
   .carousel-gf__footer {
-    margin-top: 73.3px;
+    margin-top: 60px;
   }
   .carousel-gf__controls {
-    display: none;
+    flex-direction: column;
+    gap: 13px;
+  }
+  .carousel-gf__controls .round-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .carousel-gf__controls .round-icon img {
+    width: 18px;
+    height: 18px;
+  }
+  .carousel-gf__prev img {
+    transform: rotate(-90deg);
+  }
+  .carousel-gf__next img {
+    transform: rotate(90deg);
   }
   /* Why us */
   #why-us .section__inner {

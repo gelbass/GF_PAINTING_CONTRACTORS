@@ -258,8 +258,13 @@
             line-height: 1.5;
         }
 
+        // Proporcion 3:2 de las fotos para que se vean completas; el tope de altura deja la tarjeta
+        // dentro de la pantalla mientras se apila
         img {
-            height: 230px;
+            height: auto;
+            aspect-ratio: 3 / 2;
+            min-height: 230px;
+            max-height: calc(100vh - 400px);
             margin-top: 22px;
             border-radius: $radioGrande;
         }

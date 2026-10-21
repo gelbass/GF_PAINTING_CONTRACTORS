@@ -109,3 +109,13 @@ picture {
     width: 150px;
     height: auto;
 }
+
+// Foto entera dentro de una tarjeta de tamaño fijo (Our Work y Services): no se recorta, y el
+// espacio sobrante lo rellena la misma foto desenfocada (img/*-fondo.webp, del atributo style).
+.foto-completa {
+    object-fit: contain !important;
+    background-color: #1a1a1a;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

@@ -36,7 +36,7 @@ npx sass --no-source-map scss/styles.scss css/styles.css
 
 Cada foto se sirve con `<picture>`: AVIF, luego WebP y el JPG/PNG original como respaldo, en varios tamaños para que el móvil no descargue la versión de escritorio. Para agregar o cambiar una foto:
 
-1. Copiarla en `img/` (JPG o PNG, al tamaño más grande que se vaya a mostrar).
+1. Copiarla en `img/` (JPG o PNG, al tamaño más grande que se vaya a mostrar: 1400 px de ancho para Services, 1200 px para Our Work). Las fotos de celular conviene pasarlas antes por sharp con `.rotate()` para aplicar la orientación y quitar los datos EXIF/GPS.
 2. Agregarla a la lista de `scripts/optimizar-imagenes.mjs` si es nueva.
 3. Ejecutar `npm install` (solo la primera vez) y `npm run imagenes`.
 4. En `index.html`, copiar el bloque `<picture>` de una foto parecida y cambiar los nombres.
@@ -48,7 +48,7 @@ El servidor donde se publique debe comprimir con gzip o brotli (Vercel, Netlify 
 - Rellenar `EMAILJS_PUBLIC_KEY`, `serviceID` y `templateID` en `js/script.js` con la cuenta de EmailJS del cliente.
 - Reemplazar el dominio `https://www.Mi_Pagina.com/` en las etiquetas canonical y Open Graph de `index.html`.
 - Confirmar el nombre de la empresa: el diseño dice "GF Painting Contractors".
-- Sustituir las fotos de ejemplo por fotos reales de trabajos.
+- Faltan fotos definitivas para Trash-Out Services y Ozone Treatment (siguen las de ejemplo).
 
 ## Antes de publicar
 

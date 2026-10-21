@@ -210,10 +210,17 @@ if (stack && window.gsap && window.ScrollTrigger) {
 
 // ===== CARRUSEL OUR WORK =====
 const track = document.getElementById("workTrack");
+// En movil (<= 600px) el carrusel es vertical, como en el Figma: avanza hacia abajo
 const scrollBySlide = (direction) => {
   const slide = track.querySelector(".carousel-gf__slide");
-  const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-  track.scrollBy({ left: direction * (slide.offsetWidth + gap), behavior: "smooth" });
+  const styles = getComputedStyle(track);
+  if (styles.gridAutoFlow.startsWith("row")) {
+    const gap = parseFloat(styles.rowGap) || 0;
+    track.scrollBy({ top: direction * (slide.offsetHeight + gap), behavior: "smooth" });
+  } else {
+    const gap = parseFloat(styles.columnGap) || 0;
+    track.scrollBy({ left: direction * (slide.offsetWidth + gap), behavior: "smooth" });
+  }
 };
 document.querySelector(".carousel-gf__prev").addEventListener("click", () => scrollBySlide(-1));
 document.querySelector(".carousel-gf__next").addEventListener("click", () => scrollBySlide(1));
