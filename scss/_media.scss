@@ -724,31 +724,44 @@
         aspect-ratio: auto;
     }
 
-    /* Our work: una foto por vista, con su proporcion (1154x740) para que se vea completa,
-       y las flechas encima del boton */
+    /* Our work: carrusel vertical como en el Figma (Mobile 480px): se ven dos fotos apiladas y
+       las flechas, una sobre otra, lo mueven hacia arriba y hacia abajo. Cada foto con su
+       proporcion (1154x740) para que se vea completa; 100cqw = ancho de .carousel-gf */
     #our-work .section__inner { padding: 60px 40px 46.7px; }
 
     .carousel-gf {
+        container-type: inline-size;
         margin-top: 60px;
 
         &__track {
-            grid-auto-columns: 100%;
+            grid-auto-flow: row;
+            grid-auto-columns: auto;
+            grid-auto-rows: calc(100cqw * 740 / 1154);
             gap: 20px;
+            height: calc(2 * 100cqw * 740 / 1154 + 20px);
+            overflow-x: hidden;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
         }
 
-        &__slide {
-            height: auto;
-            aspect-ratio: 1154 / 740;
+        &__slide { height: auto; }
+
+        &__footer { margin-top: 60px; }
+
+        &__controls {
+            flex-direction: column;
+            gap: 13px;
+
+            .round-icon {
+                width: 32px;
+                height: 32px;
+
+                img { width: 18px; height: 18px; }
+            }
         }
 
-        &__footer {
-            flex-direction: column-reverse;
-            align-items: flex-start;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        &__controls { align-self: flex-end; }
+        &__prev img { transform: rotate(-90deg); }
+        &__next img { transform: rotate(90deg); }
     }
 
     /* Why us */
