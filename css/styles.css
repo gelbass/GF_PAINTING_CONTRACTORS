@@ -470,7 +470,10 @@ a {
   line-height: 1.5;
 }
 .accordion-gf__panel img {
-  height: 230px;
+  height: auto;
+  aspect-ratio: 3/2;
+  min-height: 230px;
+  max-height: calc(100vh - 400px);
   margin-top: 22px;
   border-radius: 20px;
 }
@@ -1042,7 +1045,7 @@ picture source {
     margin-bottom: 0;
   }
   .accordion-gf__panel img {
-    height: clamp(160px, 26vh, 220px);
+    min-height: 160px;
     margin-top: 17.23px;
     border-radius: 15.48px;
   }
@@ -1355,7 +1358,8 @@ picture source {
     line-height: 29px;
   }
   .accordion-gf__panel img {
-    height: clamp(180px, 28vh, 300px);
+    min-height: 180px;
+    max-height: calc(100svh - 440px);
     margin-top: 13.03px;
     border-radius: 13px;
   }
@@ -1371,7 +1375,8 @@ picture source {
     gap: 13.03px;
   }
   .carousel-gf__slide {
-    height: 435px;
+    height: auto;
+    aspect-ratio: 1154/740;
     border-radius: 14.5px;
   }
   .carousel-gf__footer {
@@ -1583,8 +1588,12 @@ picture source {
   }
   .accordion-gf__panel img {
     height: clamp(110px, 32vh - 60px, 240px);
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: auto;
   }
-  /* Our work: las dos fotos se apilan como en Figma */
+  /* Our work: una foto por vista, con su proporcion (1154x740) para que se vea completa,
+     y las flechas encima del boton */
   #our-work .section__inner {
     padding: 60px 40px 46.7px;
   }
@@ -1592,22 +1601,21 @@ picture source {
     margin-top: 60px;
   }
   .carousel-gf__track {
-    grid-auto-flow: row;
-    grid-auto-columns: auto;
+    grid-auto-columns: 100%;
     gap: 20px;
-    overflow: visible;
   }
   .carousel-gf__slide {
-    height: 435px;
-  }
-  .carousel-gf__slide:nth-child(n+3) {
-    display: none;
+    height: auto;
+    aspect-ratio: 1154/740;
   }
   .carousel-gf__footer {
-    margin-top: 73.3px;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 20px;
   }
   .carousel-gf__controls {
-    display: none;
+    align-self: flex-end;
   }
   /* Why us */
   #why-us .section__inner {
