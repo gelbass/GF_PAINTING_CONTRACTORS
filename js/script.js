@@ -230,9 +230,27 @@ const form = document.getElementById("formContact");
 const btn = document.getElementById("sendEmail");
 const btnText = btn.textContent;
 
-if (EMAILJS_PUBLIC_KEY !== "TU_PUBLIC_KEY") {
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-}
+// EmailJS y SweetAlert solo se usan al enviar: se descargan cuando el usuario empieza a
+// completar el formulario, asi no compiten con la carga inicial de la pagina.
+const cargarScript = (src) =>
+  new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.append(script);
+  });
+let libreriasFormulario;
+const cargarLibreriasFormulario = () =>
+  (libreriasFormulario ??= Promise.all([
+    cargarScript("./js/vendor/email.min.js"),
+    cargarScript("./js/vendor/sweetalert2.all.min.js"),
+  ]).then(() => {
+    if (EMAILJS_PUBLIC_KEY !== "TU_PUBLIC_KEY") {
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    }
+  }));
+form.addEventListener("focusin", cargarLibreriasFormulario, { once: true });
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -246,7 +264,7 @@ form.addEventListener("submit", function (event) {
   btn.disabled = true;
   btn.textContent = "Sending...";
 
-  emailjs.sendForm(serviceID, templateID, this).then(
+  cargarLibreriasFormulario().then(() => emailjs.sendForm(serviceID, templateID, this)).then(
     () => {
       Swal.fire({
         title: "Message sent successfully",

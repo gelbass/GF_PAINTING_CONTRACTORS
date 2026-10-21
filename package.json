@@ -3,9 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "imagenes": "node scripts/optimizar-imagenes.mjs"
+    "imagenes": "node scripts/optimizar-imagenes.mjs",
+    "css-vendor": "node scripts/purgar-css.mjs"
   },
   "devDependencies": {
-    "sharp": "^0.34.4"
+    "sharp": "^0.34.4",
+    "purgecss": "^7.0.2"
   }
 }
