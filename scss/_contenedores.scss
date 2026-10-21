@@ -92,6 +92,27 @@
 }
 
 /* ===== HERO ===== */
+// Entrada del hero con CSS en lugar de AOS: empieza al pintar la pagina sin esperar al JS,
+// asi la foto principal (LCP) se ve antes. El texto entra desde la izquierda como el fade-right
+// de AOS; la foto solo aparece con un fundido: si se desplazara quedaria cortada por el borde de
+// la pantalla y el navegador tomaria como LCP el video, que llega mucho despues.
+// Opacidad inicial 0.01 y no 0 (a la vista es igual): lo que arranca en 0 no cuenta como pintado.
+@keyframes heroEntrada {
+    from {
+        opacity: 0.01;
+        transform: translate3d(var(--hero-desde, 0), 0, 0);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .hero__content,
+    .hero__image {
+        animation: heroEntrada 0.7s ease both;
+    }
+
+    .hero__content { --hero-desde: -100px; }
+}
+
 .section--hero {
     min-height: 0;
     padding: 12px 16px;
