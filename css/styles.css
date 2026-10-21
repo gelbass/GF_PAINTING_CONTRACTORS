@@ -121,7 +121,7 @@ a {
   background: #7ca651;
 }
 .btn-gf--green:hover, .btn-gf--green:focus-visible {
-  background: #7ca651;
+  background: #e17438;
 }
 .btn-gf--orange {
   background: #e17438;
@@ -254,6 +254,10 @@ a {
   border: 0;
   border-radius: 12px;
   padding: 0;
+  background: #7ca651;
+  transition: background-color 0.2s ease;
+}
+.container__menu--toggler:hover, .container__menu--toggler:focus-visible {
   background: #e17438;
 }
 .container__menu--toggler img {
@@ -789,6 +793,33 @@ a {
 }
 .footer__copy {
   font-size: 13px;
+}
+.footer__social {
+  display: flex;
+  gap: 12px;
+  margin: 6px 0 4px;
+  padding: 0;
+  list-style: none;
+}
+.footer__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #7ca651;
+  color: #fff;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.footer__social-link:hover, .footer__social-link:focus-visible {
+  background: #e17438;
+  color: #fff;
+  transform: translateY(-2px);
+}
+.footer__social-link:focus-visible {
+  outline: 2px solid #e17438;
+  outline-offset: 3px;
 }
 
 img {

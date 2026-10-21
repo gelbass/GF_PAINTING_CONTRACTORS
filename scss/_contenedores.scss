@@ -62,7 +62,10 @@
     border: 0;
     border-radius: 12px;
     padding: 0;
-    background: $colorSegundario;
+    background: $colorPrincipal;
+    transition: background-color .2s ease;
+
+    &:hover, &:focus-visible { background: $colorSegundario; }
 
     img {
         display: block;
@@ -535,4 +538,37 @@
     p { margin: 0; }
 
     &__copy { font-size: 13px; }
+
+    // Redes sociales: enlaces placeholder (href="#") hasta tener las URLs reales
+    &__social {
+        display: flex;
+        gap: 12px;
+        margin: 6px 0 4px;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: $colorPrincipal;
+        color: $colorTextB;
+        transition: background-color .2s ease, transform .2s ease;
+
+        &:hover,
+        &:focus-visible {
+            background: $colorSegundario;
+            color: $colorTextB;
+            transform: translateY(-2px);
+        }
+
+        &:focus-visible {
+            outline: 2px solid $colorSegundario;
+            outline-offset: 3px;
+        }
+    }
 }

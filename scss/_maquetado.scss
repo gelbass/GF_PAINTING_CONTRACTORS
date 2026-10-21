@@ -90,11 +90,10 @@ a {
         color: $colorTextB;
     }
 
-    // Componente Button de Figma: el estado hover es fondo verde.
-    // Los botones verdes del diseño se quedan verdes al pasar el cursor.
+    // Pedido de Germán (2026-10-21): todos los botones son verdes y el hover es naranja.
     &--green {
         background: $colorPrincipal;
-        &:hover, &:focus-visible { background: $colorPrincipal; }
+        &:hover, &:focus-visible { background: $colorSegundario; }
     }
 
     &--orange {
