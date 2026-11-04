@@ -1,3 +1,9 @@
+// ===== CONFIGURACION EMAILJS =====
+// Cuenta de EmailJS del cliente (info@gfgroupcorp.com).
+const EMAILJS_PUBLIC_KEY = "LzhQihM5Be4lG5yh1";
+const serviceID = "service_opzzlas";
+const templateID = "template_28jj4on";
+
 // ===== ANIMACIONES =====
 AOS.init({
   duration: 700,
@@ -241,8 +247,8 @@ const form = document.getElementById("formContact");
 const btn = document.getElementById("sendEmail");
 const btnText = btn.textContent;
 
-// SweetAlert solo se usa al enviar: se descarga cuando el usuario empieza a completar el
-// formulario, asi no compite con la carga inicial de la pagina.
+// EmailJS y SweetAlert solo se usan al enviar: se descargan cuando el usuario empieza a
+// completar el formulario, asi no compiten con la carga inicial de la pagina.
 const cargarScript = (src) =>
   new Promise((resolve, reject) => {
     const script = document.createElement("script");
@@ -253,18 +259,14 @@ const cargarScript = (src) =>
   });
 let libreriasFormulario;
 const cargarLibreriasFormulario = () =>
-  (libreriasFormulario ??= cargarScript("./js/vendor/sweetalert2.all.min.js").catch((error) => {
-    libreriasFormulario = null; // si fallo la descarga, se reintenta en el proximo envio
-    throw error;
+  (libreriasFormulario ??= Promise.all([
+    cargarScript("./js/vendor/email.min.js"),
+    cargarScript("./js/vendor/sweetalert2.all.min.js"),
+  ]).then(() => {
+    if (EMAILJS_PUBLIC_KEY !== "TU_PUBLIC_KEY") {
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    }
   }));
-
-// Envia el formulario a contact.php (servidor de correo del hosting)
-const enviarFormulario = async (formulario) => {
-  const respuesta = await fetch("./contact.php", { method: "POST", body: new FormData(formulario) });
-  const datos = await respuesta.json().catch(() => ({}));
-  if (!respuesta.ok || !datos.ok) throw new Error(datos.error || `HTTP ${respuesta.status}`);
-};
-
 form.addEventListener("focusin", cargarLibreriasFormulario, { once: true });
 
 form.addEventListener("submit", function (event) {
@@ -279,22 +281,18 @@ form.addEventListener("submit", function (event) {
   btn.disabled = true;
   btn.textContent = "Sending...";
 
-  Promise.all([enviarFormulario(this), cargarLibreriasFormulario().catch(() => {})]).then(
+  cargarLibreriasFormulario().then(() => emailjs.sendForm(serviceID, templateID, this)).then(
     () => {
-      form.reset();
-      form.classList.remove("was-validated");
-      if (!window.Swal) return alert("Message sent successfully. Our team will contact you shortly.");
       Swal.fire({
         title: "Message sent successfully",
         text: "Our team will contact you shortly",
         icon: "success",
         confirmButtonColor: "#7ca651",
       });
+      form.reset();
+      form.classList.remove("was-validated");
     },
-    (error) => {
-      console.error("Formulario:", error);
-      // Si no se pudo descargar SweetAlert, al menos se avisa con un alert nativo
-      if (!window.Swal) return alert("Message not sent. Try again later.");
+    () => {
       Swal.fire({
         title: "Message not sent",
         text: "Try again later.",
