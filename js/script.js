@@ -1,7 +1,7 @@
 // ===== CONFIGURACION EMAILJS =====
 // Cuenta de EmailJS del cliente (info@gfgroupcorp.com).
 const EMAILJS_PUBLIC_KEY = "LzhQihM5Be4lG5yh1";
-const serviceID = "service_opzzlas";
+const serviceID = "service_7i3j80y";
 const templateID = "template_28jj4on";
 
 // ===== ANIMACIONES =====
