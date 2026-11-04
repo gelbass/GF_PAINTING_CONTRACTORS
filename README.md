@@ -15,14 +15,15 @@ scss/               Estilos fuente
   _media.scss       Responsive (laptop, tablet, teléfono)
 css/styles.css      CSS compilado desde scss/styles.scss
 css/vendor/         Bootstrap 5.3.3 y AOS 2.3.1 (CSS servido desde la propia web, sin bloquear la carga en otro servidor)
-js/script.js        Menú, acordeón de servicios, carrusel y envío del formulario con EmailJS
+js/script.js        Menú, acordeón de servicios, carrusel y envío del formulario (fetch a contact.php)
+contact.php         Recibe el formulario y lo envía con mail() del hosting (From info@gf-painting.com, Reply-To el visitante; destinatario en MAIL_TO)
 img/                Imágenes e iconos exportados de Figma (og-image.jpg 1200×630 para redes) y sus versiones AVIF/WebP
 scripts/            optimizar-imagenes.mjs: genera las versiones AVIF/WebP
 robots.txt          Reglas para buscadores y enlace al sitemap
 sitemap.xml         Mapa del sitio para Google Search Console
 ```
 
-Librerías: el CSS de Bootstrap 5.3.3 y AOS 2.3.1 está en `css/vendor/`; los JS de Bootstrap, AOS, GSAP, EmailJS y SweetAlert2 se cargan por CDN con `defer`.
+Librerías: el CSS de Bootstrap 5.3.3 y AOS 2.3.1 está en `css/vendor/`; los JS de Bootstrap, AOS, GSAP y SweetAlert2 se sirven desde `js/vendor/`.
 
 ## Compilar estilos
 
