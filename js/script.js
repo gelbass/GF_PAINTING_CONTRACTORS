@@ -1,8 +1,8 @@
 // ===== CONFIGURACION EMAILJS =====
-// Reemplazar con los datos de la cuenta de EmailJS del cliente.
-const EMAILJS_PUBLIC_KEY = "TU_PUBLIC_KEY"; //Remplazar
-const serviceID = "TU_SERVICE_ID"; //Remplazar
-const templateID = "TU_TEMPLATE_ID"; //Remplazar
+// Cuenta de EmailJS del cliente (info@gfgroupcorp.com).
+const EMAILJS_PUBLIC_KEY = "LzhQihM5Be4lG5yh1";
+const serviceID = "service_opzzlas";
+const templateID = "template_28jj4on";
 
 // ===== ANIMACIONES =====
 AOS.init({
