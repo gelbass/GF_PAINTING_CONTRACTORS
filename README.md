@@ -45,11 +45,8 @@ El servidor donde se publique debe comprimir con gzip o brotli (Vercel, Netlify 
 
 ## Pendiente
 
-- Rellenar `EMAILJS_PUBLIC_KEY`, `serviceID` y `templateID` en `js/script.js` con la cuenta de EmailJS del cliente.
-- Reemplazar el dominio `https://www.Mi_Pagina.com/` en las etiquetas canonical y Open Graph de `index.html`.
-- Confirmar el nombre de la empresa: el diseño dice "GF Painting Contractors".
-- Faltan fotos definitivas para Trash-Out Services y Ozone Treatment (siguen las de ejemplo).
+- Falta la foto definitiva de Ozone Treatment (sigue la de ejemplo).
 
 ## Antes de publicar
 
-Reemplazar `https://TU-DOMINIO.com` por el dominio definitivo en `index.html` (canonical, Open Graph, Twitter y JSON-LD), `robots.txt` y `sitemap.xml`, y completar teléfono, email y redes en el JSON-LD.
+El dominio es `https://gf-painting.com` (canonical, Open Graph, Twitter, JSON-LD, `robots.txt` y `sitemap.xml`). Actualizar `lastmod` en `sitemap.xml` en cada publicación.
